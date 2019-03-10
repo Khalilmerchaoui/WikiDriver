@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_advert"
+        android:icon="@drawable/ic_baseline_announcement"
+        app:showAsAction="always|withText"
+        android:title="@string/title_advert" />
+
+    <item
+        android:id="@+id/navigation_calendar"
+        android:icon="@drawable/ic_baseline_calendar_today_24px"
+        app:showAsAction="always|withText"
+        android:title="@string/title_calendar" />
+
+    <item
+        android:id="@+id/navigation_social"
+        android:icon="@drawable/ic_people_black_24dp"
+        app:showAsAction="always|withText"
+        android:title="@string/title_social" />
+
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/ic_chat_black_24dp"
+        app:showAsAction="always|withText"
+        android:title="@string/title_chat" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        app:showAsAction="always|withText"
+        android:title="@string/title_settings" />
+
+</menu>

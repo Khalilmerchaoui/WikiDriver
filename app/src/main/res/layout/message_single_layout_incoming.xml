@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/message_single_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:weightSum="10">
+
+    <TextView
+        android:id="@+id/NewDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:text="DECEMBER 27, 2017" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/message_profile_layout"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_below="@+id/NewDay"
+        android:src="@drawable/profile_icon" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="7dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/rounded_corner_incoming"
+        android:layout_alignTop="@+id/message_profile_layout"
+        android:layout_toEndOf="@+id/message_profile_layout">
+
+    <TextView
+        android:id="@+id/message_text_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Message Text"
+        android:textColor="#000"
+        android:textSize="17dp"
+        />
+
+        <TextView
+            android:id="@+id/time_text_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/message_text_layout"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/message_text_layout"
+            android:text="21:01"
+            android:textColor="#7e7e7e"
+            android:textSize="10sp" />
+</RelativeLayout>
+
+
+
+</RelativeLayout>

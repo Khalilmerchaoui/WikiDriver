@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@drawable/background_img"
+    tools:context=".activities.LandingActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/imgdifpri"
+        android:layout_centerHorizontal="true"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="LOG IN"
+        android:id="@+id/btnLogIn"
+        android:typeface="monospace"
+        android:layout_marginTop="24dp"
+        android:layout_above="@id/btnSignUp"
+        android:background="@drawable/btn_login_background"
+        android:textColor="@android:color/white"
+        android:textAllCaps="true"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="SIGN UP"
+        android:id="@+id/btnSignUp"
+        android:typeface="monospace"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button_box"
+        android:textColor="@android:color/black"
+        android:textAllCaps="true"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
