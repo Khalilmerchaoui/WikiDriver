@@ -1,5 +1,5 @@
 # WikiDriver
-Android application for drivers
+An Android application which is basically a social network that brings together car drivers who use other transport applications (Uber, Lyft, ...).
 
 <div>
 <img alt="App image" src="screenshots/first_screen.jpg" width="33%">
