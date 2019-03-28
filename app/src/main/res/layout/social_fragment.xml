@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackground"
-    tools:context=".activities.AddPublicationActivity">
+    tools:context="app.m26.wikidriver.activities.AddPublicationActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -109,7 +109,7 @@
 
                         </LinearLayout>
 
-                        <com.app.wikidriver.LinkView
+                        <app.m26.wikidriver.LinkView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"

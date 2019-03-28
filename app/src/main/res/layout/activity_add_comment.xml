@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AddCommentActivity">
+    tools:context="app.m26.wikidriver.activities.AddCommentActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -99,7 +99,7 @@
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
 
-                <com.app.wikidriver.LinkView
+                <app.m26.wikidriver.LinkView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"

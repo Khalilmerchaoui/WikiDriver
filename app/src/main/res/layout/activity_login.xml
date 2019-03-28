@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
-    tools:context=".activities.LoginActivity">
+    tools:context="app.m26.wikidriver.activities.LoginActivity">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"

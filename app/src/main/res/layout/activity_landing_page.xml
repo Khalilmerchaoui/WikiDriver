@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="24dp"
     android:background="@drawable/background_img"
-    tools:context=".activities.LandingActivity">
+    tools:context="app.m26.wikidriver.activities.LandingActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="128dp"

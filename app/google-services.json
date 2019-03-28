@@ -8,6 +8,94 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:470218671126:android:6705de8a284a648b",
+        "android_client_info": {
+          "package_name": "app.m26.wikidriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470218671126-n8165vf8tkptmrkt5ebdaebqe1ti8q2t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.m26.wikidriver",
+            "certificate_hash": "e4a9cf5aad2621cfbac18197b4ec38fa68dcc47e"
+          }
+        },
+        {
+          "client_id": "470218671126-6fplvlf6tb9fgtok290doqecvnl09v5o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaxurwGLhyV3uDm9LWS4XKtOKrFTOn6Gg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470218671126-6fplvlf6tb9fgtok290doqecvnl09v5o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470218671126:android:7346b4197505b94b",
+        "android_client_info": {
+          "package_name": ""
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470218671126-gtt38ohnh4jnbcjsd1f7uubr32tdu5ua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "",
+            "certificate_hash": "e4a9cf5aad2621cfbac18197b4ec38fa68dcc47e"
+          }
+        },
+        {
+          "client_id": "470218671126-6fplvlf6tb9fgtok290doqecvnl09v5o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaxurwGLhyV3uDm9LWS4XKtOKrFTOn6Gg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470218671126-6fplvlf6tb9fgtok290doqecvnl09v5o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:470218671126:android:671944540485bad3",
         "android_client_info": {
           "package_name": "com.app.diffpridriver"
