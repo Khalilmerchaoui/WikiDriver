@@ -14,11 +14,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import app.m26.wikidriver.R;
 import app.m26.wikidriver.activities.MainActivity;
+import app.m26.wikidriver.utils.Config;
 
 public class WidgetService extends Service {
 
@@ -61,8 +61,9 @@ public class WidgetService extends Service {
             private float initialTouchY;
             private float finalTouchX;
             private float finalTouchY;
-
-
+            private long startTime, duration;
+            private int clickCount = 0;
+            private boolean doubleTap = false;
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
@@ -71,17 +72,35 @@ public class WidgetService extends Service {
                         initialY = params.y;
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
+
+                        startTime = System.currentTimeMillis();
+                        clickCount++;
                         return true;
                     case MotionEvent.ACTION_UP:
                         finalTouchX = event.getRawX();
                         finalTouchY= event.getRawY();
 
-                        if(isClicked(initialTouchX, finalTouchX, initialTouchY, finalTouchY)) {
-                            Intent mainActivity = new Intent(WidgetService.this, MainActivity.class);
-                            mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(mainActivity);
-                            stopSelf();
+                        long time = System.currentTimeMillis() - startTime;
+                        duration=  duration + time;
+                        if(clickCount == 2) {
+                            if (duration <= 200) {
+                                doubleTap = true;
+                                Log.i("tagged", "doubletap");
+                                Intent mainActivity = new Intent(WidgetService.this, MainActivity.class);
+                                mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(mainActivity);
+                                stopSelf();
+                            }
+                            clickCount = 0;
+                            duration = 0;
                         }
+                        //TODO fix bug differentiating double click from single click.
+                        /*if(!doubleTap && isClicked(initialTouchX, finalTouchX, initialTouchY, finalTouchY)) {
+                            MainActivity.setToDefault();
+                            Config.setUserOnline(getApplicationContext(), false);
+                            stopService(new Intent(WidgetService.this, ListenerService.class));
+                            Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
+                        }*/
                         return true;
                     case MotionEvent.ACTION_MOVE:
                         params.x = initialX - (int) (event.getRawX() - initialTouchX);

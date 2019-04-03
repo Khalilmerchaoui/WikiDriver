@@ -54,7 +54,7 @@ public class ListenerService extends Service {
                             Log.i("coursestate", app.getName() + "  killed.");
                         }
                     }
-                    Config.exitAllApps(ListenerService.this, backgroundApps, "app", Config.currentApp);
+                    Config.exitAllAppsFromSwitch(ListenerService.this, backgroundApps, "app", Config.currentApp);
                 }
                 if(!Config.getForegroundProcess(getApplicationContext()).equals(Config.currentApp) && Config.onCourseState) {
                     Config.onCourseState = false;

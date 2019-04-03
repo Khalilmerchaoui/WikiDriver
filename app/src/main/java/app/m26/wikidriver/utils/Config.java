@@ -2,6 +2,7 @@ package app.m26.wikidriver.utils;
 
 import android.app.Activity;
 import android.app.AppOpsManager;
+import android.app.Service;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
@@ -30,6 +31,8 @@ import app.m26.wikidriver.models.App;
 import app.m26.wikidriver.models.User;
 import app.m26.wikidriver.services.CloseAppsService;
 import app.m26.wikidriver.services.MyAccessibilityService;
+import app.m26.wikidriver.services.WidgetService;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -322,8 +325,12 @@ public class Config {
         }
     }
 
-    public static void exitAllApps(final Context context, List<App> appList, final String activity, final String appPackage) {
-        ((Activity)context).finish();
+    public static void exitAllAppsFromSwitch(final Context context, List<App> appList, final String activity, final String appPackage) {
+        try {
+            ((Activity)context).finish();
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+        }
         context.startService(new Intent(context, CloseAppsService.class));
 
         List<String> runningAppsList = getRunningApps(context);
@@ -355,6 +362,31 @@ public class Config {
                 }
             }
         }, Config.getActivatedAppList(context).size() *  2300);
+    }
+
+    public static void exitAllAppsFromWidget(final Context context, List<App> appList, final String activity, final String appPackage) {
+        try {
+            ((Activity)context).finish();
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+        }
+        context.startService(new Intent(context, CloseAppsService.class));
+
+        List<String> runningAppsList = getRunningApps(context);
+        for(final App app : appList) {
+            //if(runningAppsList.contains(app.getPackageName())) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    intent.setData(Uri.parse("package:" + app.getPackageName()));
+                    context.startActivity(intent);
+                }
+            }, 500);
+            context.stopService(new Intent(context, WidgetService.class));
+            //}
+        }
     }
 
     public static boolean isAccessibilitySettingsOn(Context context) {

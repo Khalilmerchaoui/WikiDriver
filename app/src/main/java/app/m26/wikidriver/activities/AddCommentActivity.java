@@ -128,7 +128,7 @@ public class AddCommentActivity extends AppCompatActivity {
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 String content = edtComment.getText().toString();
                 if (!content.isEmpty() || imageUri != null) {
                     String commentId = publicationsReference.child(publicationId).push().getKey();

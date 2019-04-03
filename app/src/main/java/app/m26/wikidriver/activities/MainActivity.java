@@ -160,11 +160,12 @@ public class MainActivity extends AppCompatActivity {
                         startService(new Intent(MainActivity.this, StartAppsService.class));
                         startService(new Intent(MainActivity.this, ListenerService.class));
                         startService(new Intent(MainActivity.this, WidgetService.class));
+                        finish();
                     } else {
                         mTxtState.setText(getResources().getString(R.string.offline));
                         setToDefault();
                         stopService(new Intent(MainActivity.this, ListenerService.class));
-                        Config.exitAllApps(MainActivity.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
+                        Config.exitAllAppsFromSwitch(MainActivity.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
                     }
                     Config.setCurrentUser(getApplicationContext(), currentUser);
                     Config.updateOnlineUser(getApplicationContext());
@@ -181,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         //startService(new Intent(MainActivity.this, CloseAppsService.class));
     }
 
-    private void setToDefault() {
+    public static void setToDefault() {
         Config.appsStarted = false;
         Config.finishedCourse = false;
         Config.currentApp = "";
