@@ -3,18 +3,23 @@ package app.m26.wikidriver.services;
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import app.m26.wikidriver.R;
 import app.m26.wikidriver.activities.MainActivity;
@@ -64,6 +69,26 @@ public class WidgetService extends Service {
             private long startTime, duration;
             private int clickCount = 0;
             private boolean doubleTap = false;
+
+            private static final long DOUBLE_PRESS_INTERVAL = 250; // in millis
+            private long lastPressTime;
+
+            private boolean mHasDoubleClicked = false;
+
+            private GestureDetector gestureDetector = new GestureDetector(WidgetService.this, new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onDoubleTap(MotionEvent e) {
+                    Log.d("TEST", "onDoubleTap");
+                    return super.onDoubleTap(e);
+                }
+
+                @Override
+                public boolean onSingleTapConfirmed(MotionEvent e) {
+                    Log.i("tagged", "onSingleTap");
+                    return super.onSingleTapConfirmed(e);
+                }
+            });
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
@@ -80,27 +105,35 @@ public class WidgetService extends Service {
                         finalTouchX = event.getRawX();
                         finalTouchY= event.getRawY();
 
-                        long time = System.currentTimeMillis() - startTime;
-                        duration=  duration + time;
-                        if(clickCount == 2) {
-                            if (duration <= 200) {
-                                doubleTap = true;
-                                Log.i("tagged", "doubletap");
-                                Intent mainActivity = new Intent(WidgetService.this, MainActivity.class);
-                                mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(mainActivity);
-                                stopSelf();
-                            }
-                            clickCount = 0;
-                            duration = 0;
+                        long pressTime = System.currentTimeMillis();
+
+
+                        // If double click...
+                        if (pressTime - lastPressTime <= DOUBLE_PRESS_INTERVAL) {
+                            Intent mainActivity = new Intent(WidgetService.this, MainActivity.class);
+                            mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(mainActivity);
+                            //stopSelf();
+                            mHasDoubleClicked = true;
                         }
-                        //TODO fix bug differentiating double click from single click.
-                        /*if(!doubleTap && isClicked(initialTouchX, finalTouchX, initialTouchY, finalTouchY)) {
-                            MainActivity.setToDefault();
-                            Config.setUserOnline(getApplicationContext(), false);
-                            stopService(new Intent(WidgetService.this, ListenerService.class));
-                            Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
-                        }*/
+                        else {     // If not double click....
+                            mHasDoubleClicked = false;
+                            Handler myHandler = new Handler() {
+                                public void handleMessage(Message m) {
+                                    if (!mHasDoubleClicked && isClicked(initialTouchX, finalTouchX, initialTouchY, finalTouchY)) {
+                                        MainActivity.setToDefault();
+                                        Config.setUserOnline(getApplicationContext(), false);
+                                        stopService(new Intent(WidgetService.this, ListenerService.class));
+                                        Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
+                                        fbWidget.setBackgroundColor(Color.GRAY);
+                                    }
+                                }
+                            };
+                            myHandler.sendMessageDelayed(new Message(),DOUBLE_PRESS_INTERVAL);
+                        }
+                        // record the last time the menu button was pressed.
+                        lastPressTime = pressTime;
+
                         return true;
                     case MotionEvent.ACTION_MOVE:
                         params.x = initialX - (int) (event.getRawX() - initialTouchX);
@@ -114,17 +147,17 @@ public class WidgetService extends Service {
 
     }
 
-    //TODO add bouncing effect
-    //TODO add widget functionality
-    //TODO add widget fading when clicked
-    //TODO add icon
-
-
     private boolean isClicked(float startX, float endX, float startY, float endY) {
         float differenceX = Math.abs(startX - endX);
         float differenceY = Math.abs(startY - endY);
         return !(differenceX > CLICK_ACTION_THRESHOLD/* =5 */ || differenceY > CLICK_ACTION_THRESHOLD);
     }
+
+    //TODO add bouncing effect
+    //TODO add widget functionality
+    //TODO add widget fading when clicked
+    //TODO add icon
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 

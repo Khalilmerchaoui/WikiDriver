@@ -39,10 +39,10 @@ public class MyAccessibilityService extends AccessibilityService {
             List<AccessibilityNodeInfo> list = new ArrayList<>();
             if ("com.android.settings.applications.InstalledAppDetailsTop".equals(event.getClassName())) {
                 if (Build.VERSION.SDK_INT >= 18) {
-                    list = nodeInfo.findAccessibilityNodeInfosByText("FORCER L'ARRÊT");
+                    list = nodeInfo.findAccessibilityNodeInfosByText("FORCE STOP");
 
                 } else if (Build.VERSION.SDK_INT >= 14) {
-                    list = nodeInfo.findAccessibilityNodeInfosByText("FORCER L'ARR");
+                    list = nodeInfo.findAccessibilityNodeInfosByText("FORCER L'ARRÊT");
                 }
                 for (AccessibilityNodeInfo node : list) {
                     Log.i(TAG, "ACC::onAccessibilityEvent: right_button " + node);

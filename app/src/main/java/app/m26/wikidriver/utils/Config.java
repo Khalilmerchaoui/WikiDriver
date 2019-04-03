@@ -365,11 +365,6 @@ public class Config {
     }
 
     public static void exitAllAppsFromWidget(final Context context, List<App> appList, final String activity, final String appPackage) {
-        try {
-            ((Activity)context).finish();
-        } catch (ClassCastException e) {
-            e.printStackTrace();
-        }
         context.startService(new Intent(context, CloseAppsService.class));
 
         List<String> runningAppsList = getRunningApps(context);
@@ -384,7 +379,6 @@ public class Config {
                     context.startActivity(intent);
                 }
             }, 500);
-            context.stopService(new Intent(context, WidgetService.class));
             //}
         }
     }
