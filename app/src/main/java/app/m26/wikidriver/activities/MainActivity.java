@@ -180,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
                         setToDefault();
                         stopService(new Intent(MainActivity.this, ListenerService.class));
                         Config.exitAllAppsFromSwitch(MainActivity.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
-
                     }
                     Config.setCurrentUser(getApplicationContext(), currentUser);
                     Config.updateOnlineUser(getApplicationContext());
@@ -352,9 +351,11 @@ public class MainActivity extends AppCompatActivity {
             fbWidget.startAnimation(fab_in);
             if(Config.isUserOnline(getApplicationContext()))
                 fbWidget.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
-            else
-                stopService(new Intent(MainActivity.this, WidgetService.class));
+
         }
+
+        if(!Config.isUserOnline(getApplicationContext()))
+            stopService(new Intent(MainActivity.this, WidgetService.class));
     }
 
     private void setUserOffline() {

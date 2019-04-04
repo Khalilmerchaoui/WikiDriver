@@ -108,11 +108,17 @@ public class WidgetService extends Service {
                             Handler myHandler = new Handler() {
                                 public void handleMessage(Message m) {
                                     if (!mHasDoubleClicked && isClicked(initialTouchX, finalTouchX, initialTouchY, finalTouchY)) {
-                                        MainActivity.setToDefault();
-                                        Config.setUserOnline(getApplicationContext(), false);
-                                        stopService(new Intent(WidgetService.this, ListenerService.class));
-                                        Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
-                                        fbWidget.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                                        if(Config.isUserOnline(getApplicationContext())) {
+                                            MainActivity.setToDefault();
+                                            Config.setUserOnline(getApplicationContext(), false);
+                                            stopService(new Intent(WidgetService.this, ListenerService.class));
+                                            Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
+                                            fbWidget.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                                        } else {
+                                            Intent mainActivity = new Intent(WidgetService.this, MainActivity.class);
+                                            mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            startActivity(mainActivity);
+                                        }
                                     }
                                 }
                             };
@@ -164,6 +170,7 @@ public class WidgetService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        fbWidget = null;
         windowManager.removeView(widgetLayout);
     }
 }
