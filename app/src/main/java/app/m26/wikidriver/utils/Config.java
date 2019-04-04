@@ -334,9 +334,9 @@ public class Config {
         } catch (ClassCastException e) {
             e.printStackTrace();
         }
-        Animation fab_out = AnimationUtils.loadAnimation(context, R.anim.design_fab_out);
+        /*Animation fab_out = AnimationUtils.loadAnimation(context, R.anim.design_fab_out);
         WidgetService.fbWidget.setAnimation(fab_out);
-        WidgetService.fbWidget.setVisibility(View.INVISIBLE);
+        WidgetService.fbWidget.setVisibility(View.INVISIBLE);*/
 
 
         new Handler().postDelayed(new Runnable() {

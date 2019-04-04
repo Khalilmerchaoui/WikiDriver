@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ import app.m26.wikidriver.fragments.CalendarFragment;
 import app.m26.wikidriver.fragments.SettingsFragment;
 import app.m26.wikidriver.helpers.BottomNavigationViewHelper;
 
+import static app.m26.wikidriver.services.WidgetService.fab_in;
 import static app.m26.wikidriver.services.WidgetService.fbWidget;
 
 public class MainActivity extends AppCompatActivity {
@@ -164,16 +166,15 @@ public class MainActivity extends AppCompatActivity {
                     Config.setUserOnline(getApplicationContext(), mSwitchState.isChecked());
                     if (checked) {
                         mTxtState.setText(getResources().getString(R.string.online));
-                        startService(new Intent(MainActivity.this, StartAppsService.class));
+                        //startService(new Intent(MainActivity.this, StartAppsService.class));
                         startService(new Intent(MainActivity.this, ListenerService.class));
-                        startService(new Intent(MainActivity.this, WidgetService.class));
-                        if(fbWidget != null) {
+                        /*if(fbWidget != null) {
                             Animation fab_in = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.design_fab_in);
                             fbWidget.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
                             fbWidget.setVisibility(View.VISIBLE);
                             fbWidget.startAnimation(fab_in);
-                        }
-                        finish();
+                        }*/
+                        //finish();
                     } else {
                         mTxtState.setText(getResources().getString(R.string.offline));
                         setToDefault();
@@ -280,6 +281,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        WidgetService.hideFab();
+
         if(Config.appsStarted) {
             Config.appsStarted = false;
             Config.waitingState = true;
@@ -299,7 +303,6 @@ public class MainActivity extends AppCompatActivity {
             }
             Config.finishedCourse = false;
         }
-
     }
 
     boolean doubleBackToExitPressedOnce = false;
@@ -330,9 +333,11 @@ public class MainActivity extends AppCompatActivity {
         setUserOffline();
     }
 
+
     @Override
     protected void onStop() {
         super.onStop();
+
         /*User user = Config.getCurrentUser(getApplicationContext());
         if(user != null) {
             Config.setCurrentUser(getApplicationContext(), user);
@@ -340,6 +345,16 @@ public class MainActivity extends AppCompatActivity {
             Config.updateOnlineUser(getApplicationContext());
         }*/
 
+        if(Config.isUserOnline(getApplicationContext()) && fbWidget == null)
+            startService(new Intent(MainActivity.this, WidgetService.class));
+        if(fbWidget != null) {
+            fbWidget.setVisibility(View.VISIBLE);
+            fbWidget.startAnimation(fab_in);
+            if(Config.isUserOnline(getApplicationContext()))
+                fbWidget.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
+            else
+                fbWidget.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+        }
     }
 
     private void setUserOffline() {

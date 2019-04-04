@@ -32,7 +32,7 @@ public class WidgetService extends Service {
     private RelativeLayout widgetLayout;
     private LayoutInflater layoutInflater;
     public static FloatingActionButton fbWidget;
-    private Animation fab_in, fab_out;
+    public static Animation fab_in, fab_out;
     private int CLICK_ACTION_THRESHOLD = 200;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -49,6 +49,7 @@ public class WidgetService extends Service {
         fbWidget = widgetLayout.findViewById(R.id.fbWidget);
 
         fab_in = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.design_fab_in);
+        fab_out = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.design_fab_out);
 
         fbWidget.setVisibility(View.VISIBLE);
         fbWidget.startAnimation(fab_in);
@@ -73,28 +74,11 @@ public class WidgetService extends Service {
             private float initialTouchY;
             private float finalTouchX;
             private float finalTouchY;
-            private long startTime, duration;
-            private int clickCount = 0;
-            private boolean doubleTap = false;
 
             private static final long DOUBLE_PRESS_INTERVAL = 250; // in millis
             private long lastPressTime;
 
             private boolean mHasDoubleClicked = false;
-
-            private GestureDetector gestureDetector = new GestureDetector(WidgetService.this, new GestureDetector.SimpleOnGestureListener() {
-                @Override
-                public boolean onDoubleTap(MotionEvent e) {
-                    Log.d("TEST", "onDoubleTap");
-                    return super.onDoubleTap(e);
-                }
-
-                @Override
-                public boolean onSingleTapConfirmed(MotionEvent e) {
-                    Log.i("tagged", "onSingleTap");
-                    return super.onSingleTapConfirmed(e);
-                }
-            });
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -105,8 +89,6 @@ public class WidgetService extends Service {
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
 
-                        startTime = System.currentTimeMillis();
-                        clickCount++;
                         return true;
                     case MotionEvent.ACTION_UP:
                         finalTouchX = event.getRawX();
@@ -114,11 +96,9 @@ public class WidgetService extends Service {
 
                         long pressTime = System.currentTimeMillis();
 
-
-                        // If double click...
                         if (pressTime - lastPressTime <= DOUBLE_PRESS_INTERVAL) {
                             Intent mainActivity = new Intent(WidgetService.this, MainActivity.class);
-                            mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(mainActivity);
                             //stopSelf();
                             mHasDoubleClicked = true;
@@ -162,8 +142,6 @@ public class WidgetService extends Service {
 
     //TODO add bouncing effect
     //TODO add widget functionality
-    //TODO add widget fading when clicked
-    //TODO add icon
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -177,6 +155,12 @@ public class WidgetService extends Service {
         return null;
     }
 
+    public static void hideFab() {
+        if(fbWidget != null) {
+            fbWidget.setAnimation(fab_out);
+            fbWidget.setVisibility(View.INVISIBLE);
+        }
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();
