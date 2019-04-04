@@ -18,6 +18,9 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -331,9 +334,17 @@ public class Config {
         } catch (ClassCastException e) {
             e.printStackTrace();
         }
-        context.startService(new Intent(context, CloseAppsService.class));
+        Animation fab_out = AnimationUtils.loadAnimation(context, R.anim.design_fab_out);
+        WidgetService.fbWidget.setAnimation(fab_out);
+        WidgetService.fbWidget.setVisibility(View.INVISIBLE);
 
-        List<String> runningAppsList = getRunningApps(context);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                context.startService(new Intent(context, CloseAppsService.class));
+            }
+        }, 500);
         for(final App app : appList) {
             //if(runningAppsList.contains(app.getPackageName())) {
             new Handler().postDelayed(new Runnable() {
@@ -345,7 +356,6 @@ public class Config {
                 context.startActivity(intent);
                 }
             }, 500);
-
            //}
         }
         new Handler().postDelayed(new Runnable() {
@@ -381,6 +391,8 @@ public class Config {
             }, 500);
             //}
         }
+
+        /**/
     }
 
     public static boolean isAccessibilitySettingsOn(Context context) {

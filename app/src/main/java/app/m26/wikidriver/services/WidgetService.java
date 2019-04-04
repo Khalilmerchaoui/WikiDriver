@@ -3,6 +3,7 @@ package app.m26.wikidriver.services;
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Handler;
@@ -18,9 +19,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import app.m26.wikidriver.R;
 import app.m26.wikidriver.activities.MainActivity;
 import app.m26.wikidriver.utils.Config;
@@ -30,7 +31,8 @@ public class WidgetService extends Service {
     private WindowManager windowManager;
     private RelativeLayout widgetLayout;
     private LayoutInflater layoutInflater;
-    private FloatingActionButton fbWidget;
+    public static FloatingActionButton fbWidget;
+    private Animation fab_in, fab_out;
     private int CLICK_ACTION_THRESHOLD = 200;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -45,6 +47,11 @@ public class WidgetService extends Service {
         widgetLayout = (RelativeLayout) layoutInflater.inflate(R.layout.widget_layout, null);
 
         fbWidget = widgetLayout.findViewById(R.id.fbWidget);
+
+        fab_in = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.design_fab_in);
+
+        fbWidget.setVisibility(View.VISIBLE);
+        fbWidget.startAnimation(fab_in);
 
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -125,7 +132,7 @@ public class WidgetService extends Service {
                                         Config.setUserOnline(getApplicationContext(), false);
                                         stopService(new Intent(WidgetService.this, ListenerService.class));
                                         Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
-                                        fbWidget.setBackgroundColor(Color.GRAY);
+                                        fbWidget.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
                                     }
                                 }
                             };

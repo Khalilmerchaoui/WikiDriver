@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,10 +15,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -38,6 +43,8 @@ import app.m26.wikidriver.fragments.AdvertFragment;
 import app.m26.wikidriver.fragments.CalendarFragment;
 import app.m26.wikidriver.fragments.SettingsFragment;
 import app.m26.wikidriver.helpers.BottomNavigationViewHelper;
+
+import static app.m26.wikidriver.services.WidgetService.fbWidget;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -160,12 +167,19 @@ public class MainActivity extends AppCompatActivity {
                         startService(new Intent(MainActivity.this, StartAppsService.class));
                         startService(new Intent(MainActivity.this, ListenerService.class));
                         startService(new Intent(MainActivity.this, WidgetService.class));
+                        if(fbWidget != null) {
+                            Animation fab_in = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.design_fab_in);
+                            fbWidget.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
+                            fbWidget.setVisibility(View.VISIBLE);
+                            fbWidget.startAnimation(fab_in);
+                        }
                         finish();
                     } else {
                         mTxtState.setText(getResources().getString(R.string.offline));
                         setToDefault();
                         stopService(new Intent(MainActivity.this, ListenerService.class));
                         Config.exitAllAppsFromSwitch(MainActivity.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
+
                     }
                     Config.setCurrentUser(getApplicationContext(), currentUser);
                     Config.updateOnlineUser(getApplicationContext());

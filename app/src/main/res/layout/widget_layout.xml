@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:src="@drawable/w_icon"
+        android:visibility="gone"
         fab:fab_showShadow="false"
         fab:elevation="4dp"
         android:id="@+id/fbWidget"/>
