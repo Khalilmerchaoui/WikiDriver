@@ -353,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
             if(Config.isUserOnline(getApplicationContext()))
                 fbWidget.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
             else
-                fbWidget.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                stopService(new Intent(MainActivity.this, WidgetService.class));
         }
     }
 

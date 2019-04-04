@@ -19,12 +19,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/MyAccessibilityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/MyAccessibilityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/utils/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +85,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="19" />
-          <entry key="java" value="4704" />
+          <entry key="java" value="4753" />
           <entry key="txt" value="152" />
           <entry key="xml" value="289" />
         </counts>
@@ -98,7 +93,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="19" />
-          <entry key="JAVA" value="4704" />
+          <entry key="JAVA" value="4753" />
           <entry key="PLAIN_TEXT" value="152" />
           <entry key="XML" value="289" />
         </counts>
@@ -165,8 +160,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="356" column="9" lean-forward="true" selection-start-line="356" selection-start-column="9" selection-end-line="356" selection-end-column="9" />
+            <state relative-caret-position="387">
+              <caret line="355" column="80" selection-start-line="355" selection-start-column="80" selection-end-line="355" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -599,7 +594,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554338141659</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Widget Work">
+      <created>1554409021161</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1554409021161</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -612,7 +614,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
@@ -831,8 +833,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="356" column="9" lean-forward="true" selection-start-line="356" selection-start-column="9" selection-end-line="356" selection-end-column="9" />
+        <state relative-caret-position="387">
+          <caret line="355" column="80" selection-start-line="355" selection-start-column="80" selection-end-line="355" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
