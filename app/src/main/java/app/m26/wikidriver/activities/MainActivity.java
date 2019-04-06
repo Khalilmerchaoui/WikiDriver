@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                         mTxtState.setText(getResources().getString(R.string.offline));
                         setToDefault();
                         stopService(new Intent(MainActivity.this, ListenerService.class));
-                        Config.exitAllAppsFromSwitch(MainActivity.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
+                        //Config.exitAllAppsFromSwitch(MainActivity.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
                     }
                     Config.setCurrentUser(getApplicationContext(), currentUser);
                     Config.updateOnlineUser(getApplicationContext());
