@@ -133,10 +133,6 @@
             android:name=".activities.PhotoViewActivity"
             android:screenOrientation="portrait" />
 
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="ed58e81bf421759fd98a3668b137799b10925690" />
-
         <activity android:name=".activities.ChatActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

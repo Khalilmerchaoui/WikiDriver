@@ -3,15 +3,12 @@ package app.m26.wikidriver.application;
 import android.app.Application;
 
 import app.m26.wikidriver.utils.Config;
-import com.crashlytics.android.Crashlytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by AkshayeJH on 01/07/17.
@@ -25,7 +22,6 @@ public class ChatApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 

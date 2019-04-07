@@ -30,7 +30,6 @@ import app.m26.wikidriver.application.GetTimeAgo;
 import app.m26.wikidriver.models.Messages;
 import app.m26.wikidriver.models.User;
 import app.m26.wikidriver.utils.Config;
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,7 +54,6 @@ import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import io.fabric.sdk.android.Fabric;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -103,7 +101,6 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        Fabric.with(this, new Crashlytics());
         mRootRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         mCurrentUserId = Config.getCurrentUser(getApplicationContext()).getUserId();
