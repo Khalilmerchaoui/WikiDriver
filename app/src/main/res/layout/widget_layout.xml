@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <com.gigamole.library.PulseView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pulseView"
+        app:pv_icon="@drawable/ic_icon"
+        app:pv_alpha="70"
+        app:pv_color="#eae761"
+        app:pv_count="8"
+        app:pv_measure="height"
+        app:pv_icon_width="168dp"
+        app:pv_icon_height="194dp"
+        app:pv_spawn_period="700"
+        app:pv_interpolator="@android:anim/linear_interpolator"/>
 
     <app.m26.wikidriver.custom.CustomFloatingActionButton
         android:layout_width="wrap_content"
