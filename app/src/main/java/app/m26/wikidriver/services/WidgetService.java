@@ -57,8 +57,8 @@ public class WidgetService extends Service {
         fbWidget.setVisibility(View.VISIBLE);
         fbWidget.startAnimation(fab_in);
 
-        final PulseView pulseView = widgetLayout.findViewById(R.id.pulseView);
-        pulseView.startPulse();
+        //final PulseView pulseView = widgetLayout.findViewById(R.id.pulseView);
+        //pulseView.startPulse();
 
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
