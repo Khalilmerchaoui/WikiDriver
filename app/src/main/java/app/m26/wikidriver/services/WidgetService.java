@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import app.m26.wikidriver.R;
@@ -32,6 +33,7 @@ public class WidgetService extends Service {
 
     private WindowManager windowManager;
     private RelativeLayout widgetLayout;
+    public static PulsatorLayout pulsator;
     private LayoutInflater layoutInflater;
     public static FloatingActionButton fbWidget;
     public static Animation fab_in, fab_out;
@@ -44,6 +46,7 @@ public class WidgetService extends Service {
 
         setTheme(R.style.AppTheme);
 
+
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         widgetLayout = (RelativeLayout) layoutInflater.inflate(R.layout.widget_layout, null);
@@ -53,11 +56,13 @@ public class WidgetService extends Service {
         fab_in = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.design_fab_in);
         fab_out = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.design_fab_out);
 
+        pulsator = widgetLayout.findViewById(R.id.pulsator);
+        pulsator.start();
+
         fbWidget.setVisibility(View.VISIBLE);
+        pulsator.setVisibility(View.VISIBLE);
         fbWidget.startAnimation(fab_in);
 
-        PulsatorLayout pulsator = (PulsatorLayout) widgetLayout.findViewById(R.id.pulsator);
-        pulsator.start();
 
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -167,9 +172,10 @@ public class WidgetService extends Service {
     }
 
     public static void hideFab() {
-        if(fbWidget != null) {
+        if(fbWidget != null && pulsator != null) {
             fbWidget.setAnimation(fab_out);
             fbWidget.setVisibility(View.INVISIBLE);
+            pulsator.setVisibility(View.INVISIBLE);
         }
     }
     @Override

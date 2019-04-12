@@ -11,12 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75c03ba1-9ba1-4678-870c-8b928422a3a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__pl_bclogic_pulsator4droid_1_0_3_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
@@ -24,8 +22,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/adapters/SocialPublicationsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/adapters/SocialPublicationsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" afterDir="false" />
     </list>
@@ -95,17 +92,17 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="73" />
-          <entry key="java" value="4920" />
-          <entry key="txt" value="329" />
-          <entry key="xml" value="489" />
+          <entry key="java" value="5198" />
+          <entry key="txt" value="336" />
+          <entry key="xml" value="786" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="73" />
-          <entry key="JAVA" value="4920" />
-          <entry key="PLAIN_TEXT" value="329" />
-          <entry key="XML" value="489" />
+          <entry key="JAVA" value="5198" />
+          <entry key="PLAIN_TEXT" value="336" />
+          <entry key="XML" value="786" />
         </counts>
       </usages-collector>
     </session>
@@ -115,8 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="155" column="32" selection-start-line="155" selection-start-column="32" selection-end-line="155" selection-end-column="32" />
+            <state relative-caret-position="165">
+              <caret line="347" column="67" selection-start-line="347" selection-start-column="67" selection-end-line="347" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,10 +124,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/utils/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4624">
-              <caret line="397" column="26" selection-start-line="397" selection-start-column="26" selection-end-line="397" selection-end-column="26" />
+            <state relative-caret-position="176">
+              <caret line="338" column="44" selection-start-line="338" selection-start-column="31" selection-end-line="338" selection-end-column="44" />
               <folding>
-                <element signature="e#13852#15912#0" />
+                <element signature="imports" expanded="true" />
                 <element signature="e#15918#16814#0" />
               </folding>
             </state>
@@ -146,11 +143,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="52" column="69" selection-start-line="52" selection-start-column="69" selection-end-line="52" selection-end-column="70" />
+            <state relative-caret-position="355">
+              <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -159,42 +156,20 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/adapters/SocialPublicationsAdapter.java">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="359" column="9" selection-start-line="359" selection-start-column="9" selection-end-line="359" selection-end-column="9" />
-              <folding>
-                <element signature="e#27752#27753#0" expanded="true" />
-                <element signature="e#27797#27798#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="62">
+              <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/MyAccessibilityService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="41" column="84" selection-start-line="41" selection-start-column="84" selection-end-line="41" selection-end-column="84" />
+            <state relative-caret-position="153">
+              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -216,10 +191,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>force</find>
-      <find>onCreate</find>
-      <find>FORCER</find>
-      <find>fabric</find>
       <find>crashlytics</find>
       <find>com.</find>
       <find>com.m6.wikidriver</find>
@@ -231,7 +202,6 @@
       <find>fullScreenParams</find>
       <find>setToDe</find>
       <find>setOnTouchListener</find>
-      <find>fbWidget</find>
       <find>setUserOff</find>
       <find>onResu</find>
       <find>checked</find>
@@ -246,6 +216,11 @@
       <find>Fabric</find>
       <find>fbWidget.setVis</find>
       <find>access</find>
+      <find>WidgetService</find>
+      <find>setVisibility</find>
+      <find>fbWidget.setVisibility</find>
+      <find>pulsator</find>
+      <find>fbWidget</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -278,7 +253,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/anim/design_fab_out.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/MyAccessibilityService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/utils/Config.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/ChatActivity.java" />
@@ -287,9 +261,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/custom/CustomFloatingActionButton.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/adapters/SocialPublicationsAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java" />
       </list>
     </option>
   </component>
@@ -639,7 +614,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554935547286</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="WidgetService new lib">
+      <created>1555040407566</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1555040407566</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -653,7 +635,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49812734" visible="true" weight="0.34039333" />
@@ -664,14 +645,14 @@
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.33114755" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49848714" visible="true" weight="0.19672132" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49848714" weight="0.19672132" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.3295082" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3295082" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5015129" side_tool="true" weight="0.45737705" />
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49924356" weight="0.21967213" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49924356" weight="0.13442624" />
-      <window_info anchor="bottom" id="Find" order="8" visible="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49924356" weight="0.19344263" />
+      <window_info anchor="bottom" id="Find" order="8" weight="0.3295082" />
       <window_info anchor="bottom" id="Android Profiler" order="9" weight="0.3295082" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49924356" visible="true" weight="0.3295082" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -680,7 +661,7 @@
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="Assistant" order="5" weight="0.32913387" />
-      <window_info active="true" anchor="right" id="Preview" order="6" visible="true" weight="0.3290469" />
+      <window_info anchor="right" id="Preview" order="6" weight="0.19288956" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -698,7 +679,8 @@
     <MESSAGE value="PulseView Second commit" />
     <MESSAGE value="Added custom fab" />
     <MESSAGE value="Widget Service bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Widget Service bug fix" />
+    <MESSAGE value="WidgetService new lib" />
+    <option name="LAST_COMMIT_MESSAGE" value="WidgetService new lib" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/settings.gradle">
@@ -930,17 +912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/utils/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4624">
-          <caret line="397" column="26" selection-start-line="397" selection-start-column="26" selection-end-line="397" selection-end-column="26" />
-          <folding>
-            <element signature="e#13852#15912#0" />
-            <element signature="e#15918#16814#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/MyAccessibilityService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -958,33 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="155" column="32" selection-start-line="155" selection-start-column="32" selection-end-line="155" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="52" column="69" selection-start-line="52" selection-start-column="69" selection-end-line="52" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/adapters/SocialPublicationsAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -996,11 +940,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        <state relative-caret-position="153">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/utils/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="338" column="44" selection-start-line="338" selection-start-column="31" selection-end-line="338" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#15918#16814#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="347" column="67" selection-start-line="347" selection-start-column="67" selection-end-line="347" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
