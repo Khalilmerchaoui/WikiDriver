@@ -105,257 +105,258 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
 
         final PopupMenu copyPopUp;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP_MR1) {
-            copyPopUp = new PopupMenu(context,  holder.linkView, Gravity.BOTTOM, R.attr.actionOverflowMenuStyle, 0);
+            copyPopUp = new PopupMenu(context, holder.linkView, Gravity.BOTTOM, R.attr.actionOverflowMenuStyle, 0);
         } else
             copyPopUp = new PopupMenu(context, holder.linkView);
 
         copyPopUp.getMenuInflater()
                 .inflate(R.menu.menu_linkview, copyPopUp.getMenu());
 
-        holder.txtLikes.setText(String.format("%d " + context.getResources().getString(R.string.likes), publication.getNumberOfLikes()));
-        holder.txtDislikes.setText(String.format("%d " + context.getResources().getString(R.string.dislikes), publication.getNumberOfDislikes()));
+        if (publication != null) {
+            holder.txtLikes.setText(String.format("%d " + context.getResources().getString(R.string.likes), publication.getNumberOfLikes()));
+            holder.txtDislikes.setText(String.format("%d " + context.getResources().getString(R.string.dislikes), publication.getNumberOfDislikes()));
 
-        if(publication.getLikeList() != null)
-            if(publication.getLikeList().contains(currentUser.getUserId())) {
-                holder.imgLike.setColorFilter(ContextCompat.getColor(context, R.color.colorButton_pressed));
-                holder.imgDislike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
-            } else {
-                holder.imgLike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
-            }
-        if(publication.getDislikeList() != null)
-            if(publication.getDislikeList().contains(currentUser.getUserId())) {
-                holder.imgDislike.setColorFilter(ContextCompat.getColor(context, R.color.colorButton_pressed));
-                holder.imgLike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
-            } else {
-                holder.imgDislike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
-            }
+            if (publication.getLikeList() != null)
+                if (publication.getLikeList().contains(currentUser.getUserId())) {
+                    holder.imgLike.setColorFilter(ContextCompat.getColor(context, R.color.colorButton_pressed));
+                    holder.imgDislike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
+                } else {
+                    holder.imgLike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
+                }
+            if (publication.getDislikeList() != null)
+                if (publication.getDislikeList().contains(currentUser.getUserId())) {
+                    holder.imgDislike.setColorFilter(ContextCompat.getColor(context, R.color.colorButton_pressed));
+                    holder.imgLike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
+                } else {
+                    holder.imgDislike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
+                }
 
-        usersReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                User user;
-                for(DataSnapshot postSnapshot : dataSnapshot.getChildren())
-                {
-                    user = postSnapshot.getValue(User.class);
-                    if(user.getUserId().equals(publication.getUserId())) {
-                        holder.txtName.setText(user.getFirstName() + " " + user.getLastName());
-                        Picasso.with(context)
-                                .load(user.getThumbnail())
-                                .fit()
-                                .error(R.drawable.profile_icon)
-                                .into(holder.profileIcon);
-                        break;
+            usersReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    User user;
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        user = postSnapshot.getValue(User.class);
+                        if (user.getUserId().equals(publication.getUserId())) {
+                            holder.txtName.setText(user.getFirstName() + " " + user.getLastName());
+                            Picasso.with(context)
+                                    .load(user.getThumbnail())
+                                    .fit()
+                                    .error(R.drawable.profile_icon)
+                                    .into(holder.profileIcon);
+                            break;
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
 
         /*Picasso.with(context)
                 .load(publication.getImgUrl())
                 .into(holder.imgPic);
 */
 
-        if(reference.equals(Config.FIREBASE_SOCIAL_REFERENCE))
-            if(!publication.getVideoUrl().equals("null")) {
-                if(publication.getContent().isEmpty() || publication.getContent().equals(" "))
-                    holder.txtPublication.setVisibility(View.GONE);
+            if (reference.equals(Config.FIREBASE_SOCIAL_REFERENCE))
+                if (!publication.getVideoUrl().equals("null")) {
+                    if (publication.getContent().isEmpty() || publication.getContent().equals(" "))
+                        holder.txtPublication.setVisibility(View.GONE);
 
-               
-                holder.jcVideoPlayerStandard.setVisibility(View.VISIBLE);
-                holder.jcVideoPlayerStandard.setUp(publication.getVideoUrl()
-                        , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
-        } else {
-                holder.jcVideoPlayerStandard.setVisibility(View.GONE);
-            }
 
-        try {
-            holder.txtPublication.setText(publication.getContent().replace(Config.getUrlFromString(publication.getContent()), ""));
-            if(holder.txtPublication.getText().toString().isEmpty())
-                holder.txtPublication.setVisibility(View.GONE);
-        } catch (NullPointerException e) {
-            holder.txtPublication.setText(publication.getContent());
-        }
-        if(Config.getUrlFromString(publication.getContent()) != null) {
-            holder.linkView.setVisibility(View.VISIBLE);
-            Linkify.addLinks(holder.txtPublication, Linkify.WEB_URLS);
-            holder.txtPublication.setLinkTextColor(ContextCompat.getColor(context,
-                    R.color.colorAccent));
-            holder.txtPublication.setLinksClickable(true);
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    new HttpGet(holder).execute(Config.getUrlFromString(publication.getContent()), String.valueOf(position), publication.getContent());
+                    holder.jcVideoPlayerStandard.setVisibility(View.VISIBLE);
+                    holder.jcVideoPlayerStandard.setUp(publication.getVideoUrl()
+                            , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
+                } else {
+                    holder.jcVideoPlayerStandard.setVisibility(View.GONE);
                 }
-            }, 50);
 
-        } else {
-            holder.linkView.setVisibility(View.GONE);
-        }
-
-        holder.txtComments.setText(String.format("%d " + context.getResources().getString(R.string.comments), publication.getNumberOfComments()));
-        holder.txtTimeStamp.setText(Config.epochToDate(publication.getTimeStamp(), "MMMM d  h:mm a"));
-
-        holder.commentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent commentIntent = new Intent(context, AddCommentActivity.class);
-                commentIntent.putExtra("reference", reference);
-                commentIntent.putExtra("publicationId", publication.getPublicationId());
-                context.startActivity(commentIntent);
+            try {
+                holder.txtPublication.setText(publication.getContent().replace(Config.getUrlFromString(publication.getContent()), ""));
+                if (holder.txtPublication.getText().toString().isEmpty())
+                    holder.txtPublication.setVisibility(View.GONE);
+            } catch (NullPointerException e) {
+                holder.txtPublication.setText(publication.getContent());
             }
-        });
+            if (Config.getUrlFromString(publication.getContent()) != null) {
+                holder.linkView.setVisibility(View.VISIBLE);
+                Linkify.addLinks(holder.txtPublication, Linkify.WEB_URLS);
+                holder.txtPublication.setLinkTextColor(ContextCompat.getColor(context,
+                        R.color.colorAccent));
+                holder.txtPublication.setLinksClickable(true);
 
-        if (publication.getUserId().equals(Config.getCurrentUser(context).getUserId())) {
-            final PopupMenu popup = new PopupMenu(context,  holder.imgBtnMore);
-            popup.getMenuInflater()
-                    .inflate(R.menu.popup_menu, popup.getMenu());
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new HttpGet(holder).execute(Config.getUrlFromString(publication.getContent()), String.valueOf(position), publication.getContent());
+                    }
+                }, 50);
 
-            holder.imgBtnMore.setVisibility(View.VISIBLE);
-            holder.imgBtnMore.setOnClickListener(new View.OnClickListener() {
+            } else {
+                holder.linkView.setVisibility(View.GONE);
+            }
+
+            holder.txtComments.setText(String.format("%d " + context.getResources().getString(R.string.comments), publication.getNumberOfComments()));
+            holder.txtTimeStamp.setText(Config.epochToDate(publication.getTimeStamp(), "MMMM d  h:mm a"));
+
+            holder.commentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    popup.show();
+                    Intent commentIntent = new Intent(context, AddCommentActivity.class);
+                    commentIntent.putExtra("reference", reference);
+                    commentIntent.putExtra("publicationId", publication.getPublicationId());
+                    context.startActivity(commentIntent);
                 }
             });
 
-            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    if(item.getItemId() == R.id.menu_delete) {
-                        publicationsReference.child(publication.getPublicationId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                popup.dismiss();
-                                publicationList.remove(position);
-                                SocialPublicationsAdapter.this.notifyItemRemoved(position);
-                                SocialPublicationsAdapter.this.notifyItemRangeChanged(position, getItemCount());
+            if (publication.getUserId().equals(Config.getCurrentUser(context).getUserId())) {
+                final PopupMenu popup = new PopupMenu(context, holder.imgBtnMore);
+                popup.getMenuInflater()
+                        .inflate(R.menu.popup_menu, popup.getMenu());
 
-                            }
-                        });
+                holder.imgBtnMore.setVisibility(View.VISIBLE);
+                holder.imgBtnMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popup.show();
                     }
+                });
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.menu_delete) {
+                            publicationsReference.child(publication.getPublicationId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    popup.dismiss();
+                                    publicationList.remove(position);
+                                    SocialPublicationsAdapter.this.notifyItemRemoved(position);
+                                    SocialPublicationsAdapter.this.notifyItemRangeChanged(position, getItemCount());
+
+                                }
+                            });
+                        }
+                        return false;
+                    }
+                });
+            }
+
+            holder.linkView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(holder.linkView.getLinkInfo().getUrl()));
+                    context.startActivity(intent);
+                }
+            });
+
+            holder.linkView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    copyPopUp.show();
                     return false;
                 }
             });
-        }
 
-        holder.linkView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(holder.linkView.getLinkInfo().getUrl()));
-                context.startActivity(intent);
-            }
-        });
-        
-        holder.linkView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                copyPopUp.show();
-                return false;
-            }
-        });
-
-        copyPopUp.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText(context.getResources().getString(R.string.link_copied), holder.linkView.getLinkInfo().getUrl());
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(context, context.getResources().getString(R.string.link_copied), Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
-
-        holder.likeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                List<String> likesList = new ArrayList<>();
-                if (publication.getLikeList() != null)
-                    likesList = publication.getLikeList();
-
-                if (!likesList.contains(currentUser.getUserId())) {
-                    int numberOfLikes = likesList.size();
-                    numberOfLikes++;
-                    holder.txtLikes.setText(String.format("%d " + context.getResources().getString(R.string.likes), numberOfLikes));
-
-                    if (publication.getDislikeList() != null)
-                        if (publication.getDislikeList().contains(currentUser.getUserId())) {
-                            List<String> dislikesList = publication.getDislikeList();
-                            dislikesList.remove(currentUser.getUserId());
-                            publication.setDislikeList(dislikesList);
-                            publication.setNumberOfDislikes(publication.getNumberOfDislikes() - 1);
-                            holder.imgDislike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
-                            holder.txtDislikes.setText(String.format("%d " + context.getResources().getString(R.string.dislikes), publication.getNumberOfDislikes()));
-                        }
-
-                    likesList.add(currentUser.getUserId());
-                    publication.setLikeList(likesList);
-                    publication.setNumberOfLikes(numberOfLikes);
-                    publicationList.set(position, publication);
-                    publicationsReference.child(publication.getPublicationId()).setValue(publication);
-                    holder.imgLike.setColorFilter(ContextCompat.getColor(context, R.color.colorButton_pressed));
+            copyPopUp.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText(context.getResources().getString(R.string.link_copied), holder.linkView.getLinkInfo().getUrl());
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(context, context.getResources().getString(R.string.link_copied), Toast.LENGTH_SHORT).show();
+                    return false;
                 }
+            });
 
-                //PublicationsAdapter.this.notifyItemChanged(position, publication);
-            }
-        });
+            holder.likeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    List<String> likesList = new ArrayList<>();
+                    if (publication.getLikeList() != null)
+                        likesList = publication.getLikeList();
 
-        holder.dislikeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                List<String> dislikesList = new ArrayList<>();
-                if (publication.getDislikeList() != null)
-                    dislikesList = publication.getDislikeList();
+                    if (!likesList.contains(currentUser.getUserId())) {
+                        int numberOfLikes = likesList.size();
+                        numberOfLikes++;
+                        holder.txtLikes.setText(String.format("%d " + context.getResources().getString(R.string.likes), numberOfLikes));
 
-                if (!dislikesList.contains(currentUser.getUserId())) {
-                int numberOfDislikes = dislikesList.size();
-                numberOfDislikes++;
-                holder.txtDislikes.setText(String.format("%d " + context.getResources().getString(R.string.dislikes), numberOfDislikes));
+                        if (publication.getDislikeList() != null)
+                            if (publication.getDislikeList().contains(currentUser.getUserId())) {
+                                List<String> dislikesList = publication.getDislikeList();
+                                dislikesList.remove(currentUser.getUserId());
+                                publication.setDislikeList(dislikesList);
+                                publication.setNumberOfDislikes(publication.getNumberOfDislikes() - 1);
+                                holder.imgDislike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
+                                holder.txtDislikes.setText(String.format("%d " + context.getResources().getString(R.string.dislikes), publication.getNumberOfDislikes()));
+                            }
 
-
-                if (publication.getLikeList() != null)
-                    if (publication.getLikeList().contains(currentUser.getUserId())) {
-                        List<String> likesList = publication.getLikeList();
-                        likesList.remove(currentUser.getUserId());
+                        likesList.add(currentUser.getUserId());
                         publication.setLikeList(likesList);
-                        publication.setNumberOfLikes(publication.getNumberOfLikes() - 1);
-                        holder.imgLike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
-                        holder.txtLikes.setText(String.format("%d " + context.getResources().getString(R.string.likes), publication.getNumberOfLikes()));
+                        publication.setNumberOfLikes(numberOfLikes);
+                        publicationList.set(position, publication);
+                        publicationsReference.child(publication.getPublicationId()).setValue(publication);
+                        holder.imgLike.setColorFilter(ContextCompat.getColor(context, R.color.colorButton_pressed));
+                    }
+
+                    //PublicationsAdapter.this.notifyItemChanged(position, publication);
                 }
+            });
 
-                dislikesList.add(currentUser.getUserId());
-                publication.setDislikeList(dislikesList);
-                publication.setNumberOfDislikes(numberOfDislikes);
-                publicationList.set(position, publication);
-                publicationsReference.child(publication.getPublicationId()).setValue(publication);
-                holder.imgDislike.setColorFilter(ContextCompat.getColor(context, R.color.colorButton_pressed));
+            holder.dislikeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    List<String> dislikesList = new ArrayList<>();
+                    if (publication.getDislikeList() != null)
+                        dislikesList = publication.getDislikeList();
 
-               // PublicationsAdapter.this.notifyItemChanged(position, publication);
+                    if (!dislikesList.contains(currentUser.getUserId())) {
+                        int numberOfDislikes = dislikesList.size();
+                        numberOfDislikes++;
+                        holder.txtDislikes.setText(String.format("%d " + context.getResources().getString(R.string.dislikes), numberOfDislikes));
+
+
+                        if (publication.getLikeList() != null)
+                            if (publication.getLikeList().contains(currentUser.getUserId())) {
+                                List<String> likesList = publication.getLikeList();
+                                likesList.remove(currentUser.getUserId());
+                                publication.setLikeList(likesList);
+                                publication.setNumberOfLikes(publication.getNumberOfLikes() - 1);
+                                holder.imgLike.setColorFilter(ContextCompat.getColor(context, android.R.color.black));
+                                holder.txtLikes.setText(String.format("%d " + context.getResources().getString(R.string.likes), publication.getNumberOfLikes()));
+                            }
+
+                        dislikesList.add(currentUser.getUserId());
+                        publication.setDislikeList(dislikesList);
+                        publication.setNumberOfDislikes(numberOfDislikes);
+                        publicationList.set(position, publication);
+                        publicationsReference.child(publication.getPublicationId()).setValue(publication);
+                        holder.imgDislike.setColorFilter(ContextCompat.getColor(context, R.color.colorButton_pressed));
+
+                        // PublicationsAdapter.this.notifyItemChanged(position, publication);
+                    }
                 }
-            }
-        });
+            });
 
-        holder.commentsLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent commentIntent = new Intent(context, AddCommentActivity.class);
-                commentIntent.putExtra("publicationId", publication.getPublicationId());
-                commentIntent.putExtra("reference", reference);
-                context.startActivity(commentIntent);
-            }
-        });
+            holder.commentsLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent commentIntent = new Intent(context, AddCommentActivity.class);
+                    commentIntent.putExtra("publicationId", publication.getPublicationId());
+                    commentIntent.putExtra("reference", reference);
+                    context.startActivity(commentIntent);
+                }
+            });
 
-        if(publication.getImgUrlList() != null) {
-            layoutManager = new StaggeredGridLayoutManager(publication.getImgUrlList().size(), StaggeredGridLayoutManager.VERTICAL);
-            holder.imgRecyclerView.setLayoutManager(layoutManager);
-            ImagesAdapter imagesAdapter = new ImagesAdapter(context, publication.getImgUrlList());
-            holder.imgRecyclerView.setAdapter(imagesAdapter);
+            if (publication.getImgUrlList() != null) {
+                layoutManager = new StaggeredGridLayoutManager(publication.getImgUrlList().size(), StaggeredGridLayoutManager.VERTICAL);
+                holder.imgRecyclerView.setLayoutManager(layoutManager);
+                ImagesAdapter imagesAdapter = new ImagesAdapter(context, publication.getImgUrlList());
+                holder.imgRecyclerView.setAdapter(imagesAdapter);
+            }
         }
     }
 

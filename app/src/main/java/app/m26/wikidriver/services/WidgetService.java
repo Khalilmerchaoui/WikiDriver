@@ -23,11 +23,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 
-import com.gigamole.library.PulseView;
-
 import app.m26.wikidriver.R;
 import app.m26.wikidriver.activities.MainActivity;
 import app.m26.wikidriver.utils.Config;
+import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 public class WidgetService extends Service {
 
@@ -57,8 +56,8 @@ public class WidgetService extends Service {
         fbWidget.setVisibility(View.VISIBLE);
         fbWidget.startAnimation(fab_in);
 
-        //final PulseView pulseView = widgetLayout.findViewById(R.id.pulseView);
-        //pulseView.startPulse();
+        PulsatorLayout pulsator = (PulsatorLayout) widgetLayout.findViewById(R.id.pulsator);
+        pulsator.start();
 
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
