@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <pl.bclogic.pulsator4droid.library.PulsatorLayout
-        android:id="@+id/pulsator"
+        android:id="@+id/pulsatorGreen"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_centerInParent="true"
@@ -15,6 +15,20 @@
         app:pulse_duration="2000"
         app:pulse_repeat="0"
         app:pulse_color="@color/colorAccent"
+        app:pulse_startFromScratch="false"
+        android:visibility="gone"
+        app:pulse_interpolator="Linear">
+    </pl.bclogic.pulsator4droid.library.PulsatorLayout>
+
+    <pl.bclogic.pulsator4droid.library.PulsatorLayout
+        android:id="@+id/pulsatorGray"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_centerInParent="true"
+        app:pulse_count="3"
+        app:pulse_duration="2000"
+        app:pulse_repeat="0"
+        app:pulse_color="@android:color/darker_gray"
         app:pulse_startFromScratch="false"
         android:visibility="gone"
         app:pulse_interpolator="Linear">

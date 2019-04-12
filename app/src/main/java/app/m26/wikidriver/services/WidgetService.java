@@ -33,7 +33,7 @@ public class WidgetService extends Service {
 
     private WindowManager windowManager;
     private RelativeLayout widgetLayout;
-    public static PulsatorLayout pulsator;
+    public static PulsatorLayout pulsatorGreen, pulsatorGray;
     private LayoutInflater layoutInflater;
     public static FloatingActionButton fbWidget;
     public static Animation fab_in, fab_out;
@@ -56,11 +56,14 @@ public class WidgetService extends Service {
         fab_in = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.design_fab_in);
         fab_out = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.design_fab_out);
 
-        pulsator = widgetLayout.findViewById(R.id.pulsator);
-        pulsator.start();
+        pulsatorGreen = widgetLayout.findViewById(R.id.pulsatorGreen);
+        pulsatorGreen.start();
+
+        pulsatorGray = widgetLayout.findViewById(R.id.pulsatorGray);
+        pulsatorGray.start();
 
         fbWidget.setVisibility(View.VISIBLE);
-        pulsator.setVisibility(View.VISIBLE);
+        pulsatorGreen.setVisibility(View.VISIBLE);
         fbWidget.startAnimation(fab_in);
 
 
@@ -124,6 +127,8 @@ public class WidgetService extends Service {
                                             stopService(new Intent(WidgetService.this, ListenerService.class));
                                             Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
                                             fbWidget.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                                            pulsatorGreen.setVisibility(View.INVISIBLE);
+                                            pulsatorGray.setVisibility(View.VISIBLE);
                                         } else {
                                             Intent mainActivity = new Intent(WidgetService.this, MainActivity.class);
                                             mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -172,10 +177,11 @@ public class WidgetService extends Service {
     }
 
     public static void hideFab() {
-        if(fbWidget != null && pulsator != null) {
+        if(fbWidget != null && pulsatorGreen != null && pulsatorGray != null) {
             fbWidget.setAnimation(fab_out);
             fbWidget.setVisibility(View.INVISIBLE);
-            pulsator.setVisibility(View.INVISIBLE);
+            pulsatorGreen.setVisibility(View.INVISIBLE);
+            pulsatorGray.setVisibility(View.INVISIBLE);
         }
     }
     @Override

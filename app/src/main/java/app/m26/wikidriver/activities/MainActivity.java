@@ -47,7 +47,8 @@ import app.m26.wikidriver.helpers.BottomNavigationViewHelper;
 
 import static app.m26.wikidriver.services.WidgetService.fab_in;
 import static app.m26.wikidriver.services.WidgetService.fbWidget;
-import static app.m26.wikidriver.services.WidgetService.pulsator;
+import static app.m26.wikidriver.services.WidgetService.pulsatorGray;
+import static app.m26.wikidriver.services.WidgetService.pulsatorGreen;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -347,13 +348,14 @@ public class MainActivity extends AppCompatActivity {
 
         if(Config.isUserOnline(getApplicationContext()) && fbWidget == null)
             startService(new Intent(MainActivity.this, WidgetService.class));
-        if(fbWidget != null && pulsator != null) {
+        if(fbWidget != null && pulsatorGray != null && pulsatorGreen != null) {
             fbWidget.setVisibility(View.VISIBLE);
-            pulsator.setVisibility(View.VISIBLE);
+            pulsatorGreen.setVisibility(View.VISIBLE);
+            pulsatorGray.setVisibility(View.INVISIBLE);
             fbWidget.startAnimation(fab_in);
-            if(Config.isUserOnline(getApplicationContext()))
+            if(Config.isUserOnline(getApplicationContext())) {
                 fbWidget.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
-
+            }
         }
 
         if(!Config.isUserOnline(getApplicationContext()))
