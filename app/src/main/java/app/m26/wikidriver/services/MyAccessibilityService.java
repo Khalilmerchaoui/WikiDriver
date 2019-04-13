@@ -39,6 +39,7 @@ public class MyAccessibilityService extends AccessibilityService {
             List<AccessibilityNodeInfo> list = new ArrayList<>();
             if ("com.android.settings.applications.InstalledAppDetailsTop".equals(event.getClassName())) {
                 if (Build.VERSION.SDK_INT >= 18) {
+                    //TODO check device language Locale.getDefault().getDisplayLanguage();
                     list = nodeInfo.findAccessibilityNodeInfosByText("FORCER L'ARRÊT");
 
                 } else if (Build.VERSION.SDK_INT >= 14) {

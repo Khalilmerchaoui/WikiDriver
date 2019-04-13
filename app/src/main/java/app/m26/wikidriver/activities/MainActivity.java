@@ -15,6 +15,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -52,6 +53,12 @@ import static app.m26.wikidriver.services.WidgetService.pulsatorGreen;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Fragment chatListFragment = new ChatListFragment();
+    private Fragment advertFragment = new AdvertFragment();
+    private Fragment calendarFragment = new CalendarFragment();
+    private Fragment socialFragment = new SocialFragment();
+    private Fragment settingsFragment = new SettingsFragment();
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -64,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
             else
             switch (item.getItemId()) {
                 case R.id.navigation_chat:
-                    t.replace(R.id.frameLayout, new ChatListFragment());
+                    t.replace(R.id.frameLayout, chatListFragment);
                     t.commit();
                     return true;
                 case R.id.navigation_advert:
-                    t.replace(R.id.frameLayout, new AdvertFragment());
+                    t.replace(R.id.frameLayout, advertFragment);
                     t.commit();
                     return true;
                 case R.id.navigation_calendar:
@@ -77,16 +84,16 @@ public class MainActivity extends AppCompatActivity {
                         //startActivity(intent);
                         //finish();
                     //} else {
-                    t.replace(R.id.frameLayout, new CalendarFragment());
+                    t.replace(R.id.frameLayout, calendarFragment);
                     t.commit();
                     //}
                     return true;
                 case R.id.navigation_social:
-                    t.replace(R.id.frameLayout, new SocialFragment());
+                    t.replace(R.id.frameLayout, socialFragment);
                     t.commit();
                     return true;
                 case R.id.navigation_settings:
-                    t.replace(R.id.frameLayout, new SettingsFragment());
+                    t.replace(R.id.frameLayout, settingsFragment);
                     t.commit();
                     return true;
             }
@@ -115,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             boolean annonce = bundle.getBoolean("annonce");
             if(annonce) {
                 FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-                t.replace(R.id.frameLayout, new AdvertFragment());
+                t.replace(R.id.frameLayout, advertFragment);
                 t.commit();
             }
 
@@ -138,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationViewHelper.disableShiftMode(navigation);
 
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-        t.replace(R.id.frameLayout, new AdvertFragment());
+        t.replace(R.id.frameLayout, advertFragment);
         t.commit();
 
         if(!Config.isConnectedToInternet(getApplicationContext()))
