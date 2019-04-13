@@ -24,10 +24,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity android:name=".activities.WebActivity"></activity>
+
         <service
             android:name=".services.AdvertNotificationService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".activities.MainActivity"
@@ -54,7 +56,6 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
         </service>
-
 
         <activity
             android:name=".activities.SplashScreenActivity"
@@ -132,7 +133,6 @@
         <activity
             android:name=".activities.PhotoViewActivity"
             android:screenOrientation="portrait" />
-
         <activity android:name=".activities.ChatActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -154,11 +154,10 @@
             android:name=".services.ChatNotificationService"
             android:enabled="true"
             android:exported="true" />
-
-        <service android:name=".services.WidgetService"
+        <service
+            android:name=".services.WidgetService"
             android:enabled="true"
-            android:exported="true"/>
-
+            android:exported="true" />
     </application>
 
 </manifest>
