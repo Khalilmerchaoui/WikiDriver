@@ -10,11 +10,13 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MyAccessibilityService extends AccessibilityService {
 
     private static final String TAG = "litan";
     private boolean isKilled = false;
+    private String deviceLanguage = Locale.getDefault().getDisplayLanguage();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -29,6 +31,8 @@ public class MyAccessibilityService extends AccessibilityService {
         AccessibilityNodeInfo nody = event.getSource();
         second += nody + "";
         if (AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED == event.getEventType()) {
+            String forceString = deviceLanguage.equals("french") ? "FORCER L'ARRÊT" : "FORCE STOP";
+
             AccessibilityNodeInfo nodeInfo = event.getSource();
             Log.i(TAG, "ACC::onAccessibilityEvent: nodeInfo=" + nodeInfo);
             builder += "ACC::onAccessibilityEvent: nodeInfo=" + nodeInfo;
@@ -39,7 +43,6 @@ public class MyAccessibilityService extends AccessibilityService {
             List<AccessibilityNodeInfo> list = new ArrayList<>();
             if ("com.android.settings.applications.InstalledAppDetailsTop".equals(event.getClassName())) {
                 if (Build.VERSION.SDK_INT >= 18) {
-                    //TODO check device language Locale.getDefault().getDisplayLanguage();
                     list = nodeInfo.findAccessibilityNodeInfosByText("FORCER L'ARRÊT");
 
                 } else if (Build.VERSION.SDK_INT >= 14) {
