@@ -29,6 +29,8 @@ public class WebActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         imgClose = findViewById(R.id.imgClose);
+        txtTitle = findViewById(R.id.txtTitle);
+        txtUrl = findViewById(R.id.txtUrl);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -40,6 +42,8 @@ public class WebActivity extends AppCompatActivity {
             title = extras.getString("title");
         }
 
+        txtTitle.setText(title);
+        txtUrl.setText(url);
         webView = findViewById(R.id.webView);
         webView.setWebViewClient(new MyBrowser());
 

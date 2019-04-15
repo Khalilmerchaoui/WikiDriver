@@ -21,12 +21,47 @@
             android:theme="@style/BrowserToolbar"
             android:minHeight="?android:attr/actionBarSize" >
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imgClose"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_close_white_24dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imgClose"
+                    android:layout_gravity="center_vertical"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_close_white_24dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtTitle"
+                        android:textColor="@android:color/black"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:text="title"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtUrl"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:text="url"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
