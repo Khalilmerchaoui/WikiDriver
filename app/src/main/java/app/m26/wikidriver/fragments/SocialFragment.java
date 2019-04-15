@@ -393,7 +393,8 @@ public class SocialFragment extends Fragment implements TextWatcher {
                         if(publication.getCity().equals(currentUser.getCity()) && publication.getCountry().equals(currentUser.getCountry()))
                             publications.add(publication);
                 }
-                Publication video = dataSnapshot.child("-LYXQsee1FcMiLIswsC2").getValue(Publication.class);
+                Publication video = dataSnapshot.child("-LcTnhMhqiRFr9n3ycYb").getValue(Publication.class);
+                Log.i("tagging", video.getCity());
                 publications.add(video);
                 if(publications.size() > 0){
                     txtNoPublications.setVisibility(View.INVISIBLE);
