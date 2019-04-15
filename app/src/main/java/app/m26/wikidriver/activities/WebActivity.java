@@ -1,5 +1,9 @@
 package app.m26.wikidriver.activities;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +14,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import app.m26.wikidriver.R;
 
@@ -84,15 +89,28 @@ public class WebActivity extends AppCompatActivity {
     }
 
     private void shareLink() {
-
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("text/plain");
+        i.putExtra(Intent.EXTRA_SUBJECT, "Sharing URL");
+        i.putExtra(Intent.EXTRA_TEXT, url);
+        startActivity(Intent.createChooser(i, "Share URL"));
     }
 
     private void copyLink() {
+        try {
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("url", url);
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.link_copied), Toast.LENGTH_SHORT).show();
+        } catch (NullPointerException e) {
 
+        }
     }
 
     private void openChrome() {
-
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 
     private class MyBrowser extends WebViewClient {

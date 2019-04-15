@@ -60,7 +60,7 @@ public class CloseAppsService extends Service {
                 windowManager.removeView(popupView);
                 stopSelf();
             }
-        }, Config.getActivatedAppList(getApplicationContext()).size() *  2500);
+        }, Config.getActivatedAppList(getApplicationContext()).size() *  5000);
     }
 
     @Override

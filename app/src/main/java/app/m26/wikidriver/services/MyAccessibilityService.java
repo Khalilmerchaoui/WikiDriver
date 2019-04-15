@@ -34,6 +34,7 @@ public class MyAccessibilityService extends AccessibilityService {
         if (AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED == event.getEventType()) {
             String forceString = deviceLanguage.equals("fr") ? "FORCER L'ARRÊT" : "FORCE STOP";
 
+            Log.i("tagging", forceString);
             AccessibilityNodeInfo nodeInfo = event.getSource();
             Log.i(TAG, "ACC::onAccessibilityEvent: nodeInfo=" + nodeInfo);
             builder += "ACC::onAccessibilityEvent: nodeInfo=" + nodeInfo;

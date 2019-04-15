@@ -345,6 +345,7 @@ public class Config {
                 context.startService(new Intent(context, CloseAppsService.class));
             }
         }, 500);
+
         for(final App app : appList) {
             //if(runningAppsList.contains(app.getPackageName())) {
             new Handler().postDelayed(new Runnable() {
@@ -375,6 +376,7 @@ public class Config {
     }
 
     public static void exitAllAppsFromWidget(final Context context, List<App> appList, final String activity, final String appPackage) {
+
         context.startService(new Intent(context, CloseAppsService.class));
 
         List<String> runningAppsList = getRunningApps(context);
@@ -388,7 +390,7 @@ public class Config {
                     intent.setData(Uri.parse("package:" + app.getPackageName()));
                     context.startActivity(intent);
                 }
-            }, 500);
+            }, 100);
             //}
         }
 

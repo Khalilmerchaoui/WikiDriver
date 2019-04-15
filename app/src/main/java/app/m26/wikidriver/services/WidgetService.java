@@ -122,10 +122,10 @@ public class WidgetService extends Service {
                                 public void handleMessage(Message m) {
                                     if (!mHasDoubleClicked && isClicked(initialTouchX, finalTouchX, initialTouchY, finalTouchY)) {
                                         if(Config.isUserOnline(getApplicationContext())) {
+                                            Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
                                             MainActivity.setToDefault();
                                             Config.setUserOnline(getApplicationContext(), false);
                                             stopService(new Intent(WidgetService.this, ListenerService.class));
-                                            Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
                                             fbWidget.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
                                             pulsatorGreen.setVisibility(View.INVISIBLE);
                                             pulsatorGray.setVisibility(View.VISIBLE);
