@@ -16,7 +16,7 @@ public class MyAccessibilityService extends AccessibilityService {
 
     private static final String TAG = "litan";
     private boolean isKilled = false;
-    private String deviceLanguage = Locale.getDefault().getDisplayLanguage();
+    private String deviceLanguage;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -26,12 +26,14 @@ public class MyAccessibilityService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        deviceLanguage = Locale.getDefault().getLanguage();
         String builder = "";
         String second = "";
         AccessibilityNodeInfo nody = event.getSource();
         second += nody + "";
         if (AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED == event.getEventType()) {
-            String forceString = deviceLanguage.equals("french") ? "FORCER L'ARRÊT" : "FORCE STOP";
+            String forceString = deviceLanguage.equals("fr") ? "FORCER L'ARRÊT" : "FORCE STOP";
+            Log.i("languagetag", forceString);
 
             AccessibilityNodeInfo nodeInfo = event.getSource();
             Log.i(TAG, "ACC::onAccessibilityEvent: nodeInfo=" + nodeInfo);
@@ -43,10 +45,10 @@ public class MyAccessibilityService extends AccessibilityService {
             List<AccessibilityNodeInfo> list = new ArrayList<>();
             if ("com.android.settings.applications.InstalledAppDetailsTop".equals(event.getClassName())) {
                 if (Build.VERSION.SDK_INT >= 18) {
-                    list = nodeInfo.findAccessibilityNodeInfosByText("FORCER L'ARRÊT");
+                    list = nodeInfo.findAccessibilityNodeInfosByText(forceString);
 
                 } else if (Build.VERSION.SDK_INT >= 14) {
-                    list = nodeInfo.findAccessibilityNodeInfosByText("FORCER L'ARRÊT");
+                    list = nodeInfo.findAccessibilityNodeInfosByText(forceString);
                 }
                 for (AccessibilityNodeInfo node : list) {
                     Log.i(TAG, "ACC::onAccessibilityEvent: right_button " + node);
