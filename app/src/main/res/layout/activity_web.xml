@@ -18,11 +18,13 @@
             android:background="@android:color/white"
             android:layout_alignParentTop="true"
             app:elevation="4dp"
+            android:theme="@style/BrowserToolbar"
             android:minHeight="?android:attr/actionBarSize" >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/imgClose"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_close_white_24dp"/>
         </android.support.v7.widget.Toolbar>

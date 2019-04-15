@@ -24,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".activities.WebActivity"></activity>
+        <activity android:name=".activities.WebActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
 
         <service
             android:name=".services.AdvertNotificationService"

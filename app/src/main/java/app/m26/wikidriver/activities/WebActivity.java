@@ -2,21 +2,36 @@ package app.m26.wikidriver.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import app.m26.wikidriver.R;
 
 public class WebActivity extends AppCompatActivity {
 
-    private String url;
+    private String url, title;
     private Bundle extras;
     private WebView webView;
+    private ImageView imgClose;
+    private Toolbar toolbar;
+    private TextView txtTitle, txtUrl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+
+        toolbar = findViewById(R.id.toolbar);
+        imgClose = findViewById(R.id.imgClose);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
 
         extras = getIntent().getExtras();
 
@@ -32,6 +47,32 @@ public class WebActivity extends AppCompatActivity {
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.loadUrl(url);
 
+        imgClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_browser_toolbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_openChrome:
+                break;
+            case R.id.action_copy:
+                break;
+            case R.id.action_share:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private class MyBrowser extends WebViewClient {

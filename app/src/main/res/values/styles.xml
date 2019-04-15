@@ -32,6 +32,10 @@
         <item name="android:textColorSecondary">@color/colorAccent</item>
     </style>
 
+    <style name="BrowserToolbar" parent="AppTheme">
+        <item name="android:textColorSecondary">#525252</item>
+    </style>
+
     <style name="CustomRegister" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
         <item name="DialogTitleText">@string/please_wait</item>
