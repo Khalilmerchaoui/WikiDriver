@@ -27,6 +27,7 @@ import app.m26.wikidriver.LinkView;
 import app.m26.wikidriver.R;;
 import app.m26.wikidriver.activities.AddCommentActivity;
 import app.m26.wikidriver.activities.ChatActivity;
+import app.m26.wikidriver.activities.WebActivity;
 import app.m26.wikidriver.models.Link;
 import app.m26.wikidriver.models.Publication;
 import app.m26.wikidriver.models.User;
@@ -228,9 +229,14 @@ public class AdvertPublicationsAdapter extends RecyclerView.Adapter<AdvertPublic
         holder.linkView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
+                /*Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(holder.linkView.getLinkInfo().getUrl()));
-                context.startActivity(intent);
+                context.startActivity(intent);*/
+
+                Intent webIntent = new Intent(context, WebActivity.class);
+                webIntent.putExtra("url", holder.linkView.getLinkInfo().getUrl());
+                context.startActivity(webIntent);
+                //TODO opens webActivity
             }
         });
 

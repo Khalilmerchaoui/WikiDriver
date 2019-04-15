@@ -390,11 +390,10 @@ public class SocialFragment extends Fragment implements TextWatcher {
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Publication publication = postSnapshot.getValue(Publication.class);
                     if(currentUser != null)
-                        if(publication.getCity().equals(currentUser.getCity()) && publication.getCountry().equals(currentUser.getCountry()))
+                        if(publication.getCity().equals(currentUser.getCity()) && publication.getCountry().equals(currentUser.getCountry()) && !publication.getPublicationId().equals("-LcTnhMhqiRFr9n3ycYb"))
                             publications.add(publication);
                 }
                 Publication video = dataSnapshot.child("-LcTnhMhqiRFr9n3ycYb").getValue(Publication.class);
-                Log.i("tagging", video.getCity());
                 publications.add(video);
                 if(publications.size() > 0){
                     txtNoPublications.setVisibility(View.INVISIBLE);
