@@ -211,4 +211,8 @@ Tous droits réservés - 24 novembre 2018
     <string name="link_copied">Le lien a été copié</string>
     <string name="copy">Copier</string>
 
+
+    <string name="open_chrome">Ouvrir dans Chrome</string>
+    <string name="copy_link">Copier le lien</string>
+    <string name="share_via">Partager avec...</string>
 </resources>

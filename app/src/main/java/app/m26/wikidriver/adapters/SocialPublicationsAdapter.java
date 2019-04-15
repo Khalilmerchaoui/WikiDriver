@@ -253,6 +253,7 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                     context.startActivity(intent);*/
 
                     Intent webIntent = new Intent(context, WebActivity.class);
+                    webIntent.putExtra("title", holder.linkView.getLinkInfo().getTitle());
                     webIntent.putExtra("url", holder.linkView.getLinkInfo().getUrl());
                     context.startActivity(webIntent);
                 }

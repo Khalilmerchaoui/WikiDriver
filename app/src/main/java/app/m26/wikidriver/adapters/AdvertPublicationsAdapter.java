@@ -234,6 +234,7 @@ public class AdvertPublicationsAdapter extends RecyclerView.Adapter<AdvertPublic
                 context.startActivity(intent);*/
 
                 Intent webIntent = new Intent(context, WebActivity.class);
+                webIntent.putExtra("title", holder.linkView.getLinkInfo().getTitle());
                 webIntent.putExtra("url", holder.linkView.getLinkInfo().getUrl());
                 context.startActivity(webIntent);
                 //TODO opens webActivity

@@ -37,6 +37,7 @@ public class WebActivity extends AppCompatActivity {
 
         if(extras != null) {
             url = extras.getString("url");
+            title = extras.getString("title");
         }
 
         webView = findViewById(R.id.webView);
@@ -66,13 +67,28 @@ public class WebActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_openChrome:
+                openChrome();
                 break;
             case R.id.action_copy:
+                copyLink();
                 break;
             case R.id.action_share:
+                shareLink();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void shareLink() {
+
+    }
+
+    private void copyLink() {
+
+    }
+
+    private void openChrome() {
+
     }
 
     private class MyBrowser extends WebViewClient {
