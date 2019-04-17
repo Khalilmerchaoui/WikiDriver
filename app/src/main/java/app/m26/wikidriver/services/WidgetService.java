@@ -161,9 +161,6 @@ public class WidgetService extends Service {
         return !(differenceX > CLICK_ACTION_THRESHOLD/* =5 */ || differenceY > CLICK_ACTION_THRESHOLD);
     }
 
-    //TODO add bouncing effect
-    //TODO add widget functionality
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 

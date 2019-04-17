@@ -116,7 +116,6 @@ public class AddCommentActivity extends AppCompatActivity {
 
         usersReference = FirebaseDatabase.getInstance().getReference(Config.FIREBASE_USERS_REFERENCE);
 
-         //TODO commentsAdapter, comment_item_layout, publicationsFirebase into views.
         extras = getIntent().getExtras();
         if(extras != null) {
             reference = extras.getString("reference");

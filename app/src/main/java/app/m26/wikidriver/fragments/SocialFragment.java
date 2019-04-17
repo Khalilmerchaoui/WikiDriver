@@ -469,7 +469,6 @@ public class SocialFragment extends Fragment implements TextWatcher {
                 video = true;
                 selectedVideo = data.getData();
                 //videoRef = storageRef.child("/videos/" + userUid );
-                //TODO: save the video in the db
                 //uploadData(selectedVideoUri);
                 String path = getThumbnailPathForLocalFile(getActivity(), selectedVideo);
                 File image = new File(path);

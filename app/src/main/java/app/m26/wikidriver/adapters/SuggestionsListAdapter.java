@@ -77,7 +77,6 @@ public class SuggestionsListAdapter extends ArrayAdapter implements Filterable{
 
         final View finalView = view;
         view.setOnClickListener(v -> {
-            //TODO update List in categories screen
             updateList(user);
             finalView.setVisibility(View.INVISIBLE);
         });

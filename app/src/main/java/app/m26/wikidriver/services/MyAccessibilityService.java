@@ -34,7 +34,6 @@ public class MyAccessibilityService extends AccessibilityService {
         if (AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED == event.getEventType()) {
             String forceString = deviceLanguage.equals("fr") ? "FORCER L'ARRÊT" : "FORCE STOP";
 
-            Log.i("tagging", forceString);
             AccessibilityNodeInfo nodeInfo = event.getSource();
             Log.i(TAG, "ACC::onAccessibilityEvent: nodeInfo=" + nodeInfo);
             builder += "ACC::onAccessibilityEvent: nodeInfo=" + nodeInfo;
@@ -75,10 +74,6 @@ public class MyAccessibilityService extends AccessibilityService {
             }
             if(isKilled) {
                 performGlobalAction(GLOBAL_ACTION_BACK);
-                /*Toast.makeText(this, builder, Toast.LENGTH_SHORT).show();
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("label", builder);
-                clipboard.setPrimaryClip(clip);*/
             }
 
         }
@@ -105,19 +100,6 @@ public class MyAccessibilityService extends AccessibilityService {
         info.feedbackType = AccessibilityEvent.TYPES_ALL_MASK;
         info.notificationTimeout = 100;
         this.setServiceInfo(info);
-        // Toast.makeText(getApplicationContext(), "onServiceConnected", Toast.LENGTH_SHORT).show();
-    }
-
-    private static void logd(String msg) {
-        Log.d(TAG, msg);
-    }
-
-    private static void logw(String msg) {
-        Log.w(TAG, msg);
-    }
-
-    private static void logi(String msg) {
-        Log.i(TAG, msg);
     }
 
 }

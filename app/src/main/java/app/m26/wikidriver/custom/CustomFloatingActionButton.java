@@ -18,7 +18,6 @@ public class CustomFloatingActionButton extends FloatingActionButton {
         super(context, attrs, defStyleAttr);
     }
 
-    //TODO add pulse view to fab.
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);

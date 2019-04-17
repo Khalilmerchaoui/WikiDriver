@@ -29,8 +29,6 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
-//import com.app.diffpridriver.fragments.ChatListFragment;
 import app.m26.wikidriver.fragments.ChatListFragment;
 import app.m26.wikidriver.fragments.SocialFragment;
 import app.m26.wikidriver.models.User;
@@ -79,11 +77,6 @@ public class MainActivity extends AppCompatActivity {
                     t.commit();
                     return true;
                 case R.id.navigation_calendar:
-                    //if(!Config.getCurrentUser(getApplicationContext()).getCountry().equals("null")) {
-                        //Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);
-                        //startActivity(intent);
-                        //finish();
-                    //} else {
                     t.replace(R.id.frameLayout, calendarFragment);
                     t.commit();
                     //}
@@ -198,7 +191,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //TODO uncomment the following
         if(Config.needPermissionForBlocking(getApplicationContext())) {
             showSettingsDialog();
         }
