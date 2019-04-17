@@ -17,7 +17,7 @@ public class ListenerService extends Service {
     public ListenerService() {
     }
 
-    private int mInterval = 500; // 5 seconds by default, can be changed later
+    private int mInterval = 500; // 0.5 seconds by default, can be changed later
     private Handler mHandler;
     private List<String> packageNames = new ArrayList<>();
     @Override
@@ -65,8 +65,6 @@ public class ListenerService extends Service {
 
                 }
             } finally {
-                // 100% guarantee that this always happens, even if
-                // your update method throws an exception
                 mHandler.postDelayed(mStatusChecker, mInterval);
             }
         }
