@@ -123,7 +123,7 @@ public class Config {
     public static void setUserOnline(Context context, boolean state) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("Pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("online", state).apply();
+        editor.putBoolean("online", state).commit();
     }
 
     public static User getCurrentUser(Context context) {
