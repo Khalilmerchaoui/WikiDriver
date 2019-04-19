@@ -46,7 +46,6 @@ public class WidgetService extends Service {
 
         setTheme(R.style.AppTheme);
 
-
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         widgetLayout = (RelativeLayout) layoutInflater.inflate(R.layout.widget_layout, null);
