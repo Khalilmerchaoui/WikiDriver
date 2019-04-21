@@ -111,6 +111,7 @@ public class AdvertPublicationsAdapter extends RecyclerView.Adapter<AdvertPublic
                         Picasso.with(context)
                                 .load(user.getThumbnail())
                                 .error(R.drawable.profile_icon)
+                                .fit()
                                 .into(holder.profileIcon);
 
                         break;

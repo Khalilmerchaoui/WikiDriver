@@ -22,7 +22,7 @@ import android.os.IBinder;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
-import app.m26.wikidriver.R;;
+import app.m26.wikidriver.R;
 import app.m26.wikidriver.activities.ChatActivity;
 import app.m26.wikidriver.models.Messages;
 import app.m26.wikidriver.models.User;

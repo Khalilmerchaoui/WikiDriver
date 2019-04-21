@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import app.m26.wikidriver.R;;
+import app.m26.wikidriver.R;
 import app.m26.wikidriver.utils.Config;
 
 public class CloseAppsService extends Service {
@@ -60,7 +60,7 @@ public class CloseAppsService extends Service {
                 windowManager.removeView(popupView);
                 stopSelf();
             }
-        }, Config.getActivatedAppList(getApplicationContext()).size() *  5000);
+        }, Config.getActivatedAppList(getApplicationContext()).size() *  3000);
     }
 
     @Override
