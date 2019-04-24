@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment chatListFragment = new ChatListFragment();
     private Fragment advertFragment = new AdvertFragment();
     private Fragment calendarFragment = new CalendarFragment();
-    private Fragment socialFragment = new SocialFragment();
+    //private Fragment socialFragment = new SocialFragment();
     private Fragment settingsFragment = new SettingsFragment();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     //}
                     return true;
                 case R.id.navigation_social:
-                    t.replace(R.id.frameLayout, socialFragment);
+                    t.replace(R.id.frameLayout, new SocialFragment());
                     t.commit();
                     return true;
                 case R.id.navigation_settings:
@@ -302,6 +302,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             Config.finishedCourse = false;
+        }
+
+        if(!Config.isUserOnline(getApplicationContext())) {
+            mTxtState.setText(getResources().getString(R.string.offline));
+            mSwitchState.setChecked(false);
+        } else {
+            mTxtState.setText(getResources().getString(R.string.online));
+            mSwitchState.setChecked(true);
         }
     }
 
