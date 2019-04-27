@@ -390,11 +390,10 @@ public class Config {
                     intent.setData(Uri.parse("package:" + app.getPackageName()));
                     context.startActivity(intent);
                 }
-            }, 100);
+            }, 500);
             //}
         }
 
-        /**/
     }
 
     public static boolean isAccessibilitySettingsOn(Context context) {
