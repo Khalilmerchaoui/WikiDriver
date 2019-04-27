@@ -45,6 +45,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
@@ -88,7 +89,7 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
     @NonNull
     @Override
     public SocialPublicationsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.social_publication_item_layout, parent, false);
         return new SocialPublicationsAdapter.ViewHolder(itemView);
     }
@@ -97,6 +98,8 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
 
     @Override
     public void onBindViewHolder(final @NonNull SocialPublicationsAdapter.ViewHolder holder, int position) {
+
+        long startTime = System.currentTimeMillis();
 
         final Publication publication = publicationList.get(position);
         this.currentPublication = publication;
@@ -140,10 +143,11 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                         user = postSnapshot.getValue(User.class);
                         if (user.getUserId().equals(publication.getUserId())) {
                             holder.txtName.setText(user.getFirstName() + " " + user.getLastName());
-                            Picasso.with(context)
+                            Picasso.with(holder.profileIcon.getContext())
                                     .load(user.getThumbnail())
                                     .fit()
                                     .error(R.drawable.profile_icon)
+                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
                                     .into(holder.profileIcon);
                             break;
                         }
@@ -158,8 +162,8 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
 
         /*Picasso.with(context)
                 .load(publication.getImgUrl())
-                .into(holder.imgPic);
-*/
+                .into(holder.imgPic);*/
+
 
             if (reference.equals(Config.FIREBASE_SOCIAL_REFERENCE))
                 if (!publication.getVideoUrl().equals("null")) {
@@ -188,12 +192,12 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                         R.color.colorAccent));
                 holder.txtPublication.setLinksClickable(true);
 
-                new Handler().postDelayed(new Runnable() {
+                /*new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         new HttpGet(holder).execute(Config.getUrlFromString(publication.getContent()), String.valueOf(position), publication.getContent());
                     }
-                }, 50);
+                }, 50);*/
 
             } else {
                 holder.linkView.setVisibility(View.GONE);
@@ -212,7 +216,7 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                 }
             });
 
-            if (publication.getUserId().equals(Config.getCurrentUser(context).getUserId())) {
+           if (publication.getUserId().equals(Config.getCurrentUser(context).getUserId())) {
                 final PopupMenu popup = new PopupMenu(context, holder.imgBtnMore);
                 popup.getMenuInflater()
                         .inflate(R.menu.popup_menu, popup.getMenu());
@@ -245,12 +249,9 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                 });
             }
 
-            holder.linkView.setOnClickListener(new View.OnClickListener() {
+           holder.linkView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(holder.linkView.getLinkInfo().getUrl()));
-                    context.startActivity(intent);*/
 
                     Intent webIntent = new Intent(context, WebActivity.class);
                     webIntent.putExtra("title", holder.linkView.getLinkInfo().getTitle());
@@ -364,6 +365,14 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                 holder.imgRecyclerView.setAdapter(imagesAdapter);
             }
         }
+
+        Log.i("viewrenderingTime", "bindView time: " + (System.currentTimeMillis() - startTime));
+
+    }
+
+    @Override
+    public void onViewRecycled(@NonNull ViewHolder holder) {
+        super.onViewRecycled(holder);
     }
 
     @Override

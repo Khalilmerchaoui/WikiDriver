@@ -94,6 +94,8 @@ public class AdvertPublicationsAdapter extends RecyclerView.Adapter<AdvertPublic
     @Override
     public void onBindViewHolder(final @NonNull AdvertPublicationsAdapter.ViewHolder holder, int position) {
 
+        long startTime = System.currentTimeMillis();
+
         final Publication publication = publicationList.get(position);
         this.currentPublication = publication;
 
@@ -266,6 +268,8 @@ public class AdvertPublicationsAdapter extends RecyclerView.Adapter<AdvertPublic
                 context.startActivity(i);
             }
         });
+
+        Log.i("performanceTime", "Time :" + (System.currentTimeMillis()  - startTime));
     }
 
     @Override

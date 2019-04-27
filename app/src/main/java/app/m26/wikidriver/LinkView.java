@@ -38,7 +38,7 @@ public class LinkView extends LinearLayout {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        inflate(context, R.layout.link_item_layout, this);
+        inflate(getContext(), R.layout.link_item_layout, this);
         txtTitle = findViewById(R.id.txtTitle);
         txtUrl = findViewById(R.id.txtUrl);
         img = findViewById(R.id.img);
@@ -51,12 +51,12 @@ public class LinkView extends LinearLayout {
         txtTitle.setText(link.getTitle());
         txtUrl.setText(link.getUrl());
 
-        Picasso.with(context)
+        /*Picasso.with(img.getContext())
                 .load(link.getImgUrl())
                 .fit()
                 .centerCrop()
                 .error(R.drawable.image_not_loaded)
-                .into(img);
+                .into(img);*/
     }
 
     public Link getLinkInfo() {
