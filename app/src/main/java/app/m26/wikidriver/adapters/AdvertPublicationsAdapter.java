@@ -99,9 +99,8 @@ public class AdvertPublicationsAdapter extends RecyclerView.Adapter<AdvertPublic
         final Publication publication = publicationList.get(position);
         this.currentPublication = publication;
 
-        User currentUser = Config.getCurrentUser(context);
 
-        usersReference.addValueEventListener(new ValueEventListener() {
+        usersReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user;

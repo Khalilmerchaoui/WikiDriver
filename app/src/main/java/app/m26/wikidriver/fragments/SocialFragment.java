@@ -382,7 +382,7 @@ public class SocialFragment extends Fragment implements TextWatcher {
     }
 
     private void loadPublicationsFromFirebase() {
-        publicationsReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        publicationsReference.limitToLast(15).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Publication> publications = new ArrayList<>();

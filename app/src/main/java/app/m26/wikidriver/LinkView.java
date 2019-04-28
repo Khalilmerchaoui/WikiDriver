@@ -51,12 +51,12 @@ public class LinkView extends LinearLayout {
         txtTitle.setText(link.getTitle());
         txtUrl.setText(link.getUrl());
 
-        /*Picasso.with(img.getContext())
+        Picasso.with(img.getContext())
                 .load(link.getImgUrl())
                 .fit()
                 .centerCrop()
                 .error(R.drawable.image_not_loaded)
-                .into(img);*/
+                .into(img);
     }
 
     public Link getLinkInfo() {
