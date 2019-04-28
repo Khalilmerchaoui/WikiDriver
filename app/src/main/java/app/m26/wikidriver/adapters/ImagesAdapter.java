@@ -31,21 +31,11 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.image_item_layout, parent, false);
-        return new ImagesAdapter.ViewHolder(itemView);
-    }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        Picasso.with(context)
-                .load(imgUrlList.get(position))
-                .error(R.drawable.image_not_loaded)
-                .into(holder.imageView);
-
-        Log.i("tagged", imgUrlList.get(position));
+        ViewHolder holder = new ImagesAdapter.ViewHolder(itemView);
 
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +48,21 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
                 }
             }
         });
+
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Picasso.with(holder.imageView.getContext())
+                .load(imgUrlList.get(position))
+                .error(R.drawable.image_not_loaded)
+                .into(holder.imageView);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override

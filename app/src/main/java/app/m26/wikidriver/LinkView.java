@@ -51,6 +51,8 @@ public class LinkView extends LinearLayout {
         txtTitle.setText(link.getTitle());
         txtUrl.setText(link.getUrl());
 
+
+
         Picasso.with(img.getContext())
                 .load(link.getImgUrl())
                 .fit()
