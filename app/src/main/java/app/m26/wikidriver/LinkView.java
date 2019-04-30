@@ -7,9 +7,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import app.m26.wikidriver.R;;
+import app.m26.wikidriver.R;
 
 import app.m26.wikidriver.models.Link;
+
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 public class LinkView extends LinearLayout {
@@ -45,18 +47,18 @@ public class LinkView extends LinearLayout {
 
     }
 
-    public void setLinkInfo(Context context, Link link) {
+    public void setLinkInfo(Link link) {
         this.link = link;
 
         txtTitle.setText(link.getTitle());
         txtUrl.setText(link.getUrl());
 
 
-
         Picasso.with(img.getContext())
                 .load(link.getImgUrl())
                 .fit()
                 .centerCrop()
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .error(R.drawable.image_not_loaded)
                 .into(img);
     }

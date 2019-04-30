@@ -465,7 +465,7 @@ public class AddCommentActivity extends AppCompatActivity {
                             String imgUrl = s.substring(0, s.indexOf("\""));
                             Link link = new Link(doc.title(), Config.getUrlFromString(content), imgUrl);
                             linkView.setVisibility(View.VISIBLE);
-                            linkView.setLinkInfo(getApplicationContext(), link);
+                            linkView.setLinkInfo(link);
                             Log.i("ragging", imgUrl);
                         } else if (response.contains("<img")) {
                             String img = response.substring(response.indexOf("<img"));
@@ -478,12 +478,12 @@ public class AddCommentActivity extends AppCompatActivity {
 
 
                             Link link = new Link(doc.title(), Config.getUrlFromString(content), imgUrl);
-                            linkView.setLinkInfo(getApplicationContext(), link);
+                            linkView.setLinkInfo(link);
                         } else {
                             String imgUrl = "https://firebasestorage.googleapis.com/v0/b/difpridriver-6dc47.appspot.com/o/img_not_found.png?alt=media&token=dfc6b1f3-2027-40fb-96dc-f67b74529fd5";
                             Link link = new Link(doc.title(), Config.getUrlFromString(content), imgUrl);
                             linkView.setVisibility(View.VISIBLE);
-                            linkView.setLinkInfo(getApplicationContext(), link);
+                            linkView.setLinkInfo(link);
                         }
                     }
 

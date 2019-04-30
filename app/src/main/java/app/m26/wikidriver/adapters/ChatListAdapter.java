@@ -32,7 +32,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     private Context context;
     private FirebaseDatabase database;
     private DatabaseReference msgReference;
-    private List<String> usersChatIdList = new ArrayList();
+    private List<String> usersChatIdList;
     private DatabaseReference usersReference;
 
     public class ViewHolder extends android.support.v7.widget.RecyclerView.ViewHolder {
@@ -45,12 +45,12 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            this.txtTimeStamp = (TextView) view.findViewById(R.id.txtTimeStamp);
-            this.txtFullName = (TextView) view.findViewById(R.id.txtFullName);
-            this.txtMsg = (TextView) view.findViewById(R.id.txtMsg);
-            this.imgProfile = (CircleImageView) view.findViewById(R.id.imgProfile);
-            this.imgStatus = (ImageView) view.findViewById(R.id.imgStatus);
-            this.userLayout = (RelativeLayout) view.findViewById(R.id.userLayout);
+            this.txtTimeStamp = view.findViewById(R.id.txtTimeStamp);
+            this.txtFullName = view.findViewById(R.id.txtFullName);
+            this.txtMsg = view.findViewById(R.id.txtMsg);
+            this.imgProfile = view.findViewById(R.id.imgProfile);
+            this.imgStatus = view.findViewById(R.id.imgStatus);
+            this.userLayout = view.findViewById(R.id.userLayout);
         }
     }
 
@@ -68,41 +68,17 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     }
 
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
-        final String str = (String) this.usersChatIdList.get(i);
+        final String str = this.usersChatIdList.get(i);
         Log.i("usersId", str);
         this.usersReference.child(str).addListenerForSingleValueEvent(new ValueEventListener() {
 
-            /* renamed from: com.app.diffpridriver.adapters.ChatListAdapter$1$1 */
-            class C07671 implements ChildEventListener {
-                public void onCancelled(DatabaseError databaseError) {
-                }
-
-                public void onChildChanged(DataSnapshot dataSnapshot, String str) {
-                }
-
-                public void onChildMoved(DataSnapshot dataSnapshot, String str) {
-                }
-
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-                }
-
-                C07671() {
-                }
-
-                public void onChildAdded(DataSnapshot dataSnapshot, String str) {
-                    Messages messages = (Messages) dataSnapshot.getValue(Messages.class);
-                    if (messages != null) {
-                        viewHolder.txtTimeStamp.setText(Config.epochToDate(messages.getTime(), "HH:mm"));
-                        viewHolder.txtMsg.setText(messages.getMessage());
-                    }
-                }
-            }
-
+            @Override
             public void onCancelled(DatabaseError databaseError) {
             }
 
+            @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = (User) dataSnapshot.getValue(User.class);
+                User user = dataSnapshot.getValue(User.class);
                 if (user != null) {
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.append(user.getFirstName());
@@ -117,21 +93,51 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
                         viewHolder.imgStatus.setVisibility(View.GONE);
                         viewHolder.txtTimeStamp.setVisibility(View.VISIBLE);
                     }
-                    Picasso.with(ChatListAdapter.this.context).load(thumbnail).error(R.drawable.profile_icon).into(viewHolder.imgProfile);
+                    Picasso.with(context).load(thumbnail).error(R.drawable.profile_icon).into(viewHolder.imgProfile);
                     viewHolder.txtFullName.setText(stringBuilder2);
-                    ChatListAdapter.this.msgReference.child(Config.getCurrentUser(ChatListAdapter.this.context).getUserId()).child(str).orderByKey().limitToLast(1).addChildEventListener(new C07671());
+                    msgReference.child(Config.getCurrentUser(ChatListAdapter.this.context).getUserId()).child(str).orderByKey().limitToLast(1).addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                            Messages messages = dataSnapshot.getValue(Messages.class);
+                            if (messages != null) {
+                                viewHolder.txtTimeStamp.setText(Config.epochToDate(messages.getTime(), "HH:mm"));
+                                viewHolder.txtMsg.setText(messages.getMessage());
+                            }
+                        }
+
+                        @Override
+                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                 }
             }
         });
         viewHolder.userLayout.setOnClickListener(new OnClickListener() {
+            @Override
             public void onClick(View view) {
-                Intent i = new Intent(ChatListAdapter.this.context, ChatActivity.class);
+                Intent i = new Intent(context, ChatActivity.class);
                 i.putExtra("user_id", str);
                 context.startActivity(i);
             }
         });
     }
-
+    @Override
     public int getItemCount() {
         return this.usersChatIdList.size();
     }

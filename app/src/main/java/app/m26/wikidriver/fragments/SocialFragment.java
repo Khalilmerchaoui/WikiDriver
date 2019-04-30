@@ -398,6 +398,7 @@ public class SocialFragment extends Fragment implements TextWatcher {
                 if(publications.size() > 0){
                     txtNoPublications.setVisibility(View.INVISIBLE);
                     SocialPublicationsAdapter adapter = new SocialPublicationsAdapter(getActivity(), publications, Config.FIREBASE_SOCIAL_REFERENCE);
+                    adapter.setHasStableIds(true);
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 } else {
@@ -719,7 +720,7 @@ public class SocialFragment extends Fragment implements TextWatcher {
                         s = s.replace("<meta property=\"og:image\" content=\"", "");
                         String imgUrl = s.substring(0, s.indexOf("\""));
                         Link link = new Link(doc.title(),urlString, imgUrl);
-                        linkView.setLinkInfo(getActivity(), link);
+                        linkView.setLinkInfo(link);
                         Log.i("ragging", imgUrl);
                     }
                     else if(response.contains("<img")) {
@@ -733,11 +734,11 @@ public class SocialFragment extends Fragment implements TextWatcher {
 
 
                         Link link = new Link(doc.title(), urlString, imgUrl);
-                        linkView.setLinkInfo(getActivity(), link);
+                        linkView.setLinkInfo(link);
                     } else {
                         String imgUrl = "https://firebasestorage.googleapis.com/v0/b/difpridriver-6dc47.appspot.com/o/img_not_found.png?alt=media&token=dfc6b1f3-2027-40fb-96dc-f67b74529fd5";
                         Link link = new Link(doc.title(), urlString , imgUrl);
-                        linkView.setLinkInfo(getActivity(), link);
+                        linkView.setLinkInfo(link);
                     }
                 }
 

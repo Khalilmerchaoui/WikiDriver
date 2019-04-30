@@ -54,10 +54,14 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        long startTime = System.currentTimeMillis();
+
         Picasso.with(holder.imageView.getContext())
                 .load(imgUrlList.get(position))
                 .error(R.drawable.image_not_loaded)
                 .into(holder.imageView);
+
+        Log.i("performance", "" + (System.currentTimeMillis() -startTime));
     }
 
     @Override

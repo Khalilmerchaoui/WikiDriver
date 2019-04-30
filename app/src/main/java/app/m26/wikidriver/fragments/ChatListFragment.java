@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatListFragment extends Fragment {
+
     private DatabaseReference chatReference;
     private LinearLayoutManager layoutManager;
     private RecyclerView recyclerView;
@@ -32,21 +33,28 @@ public class ChatListFragment extends Fragment {
 
     public void onActivityCreated(@Nullable Bundle bundle) {
         super.onActivityCreated(bundle);
-        this.chatReference = FirebaseDatabase.getInstance().getReference(Config.FIREBASE_CHAT_REFERENCE);
-       String userId = Config.getCurrentUser(getActivity()).getUserId();
-        this.recyclerView = (RecyclerView) getActivity().findViewById(R.id.recyclerView);
-        this.layoutManager = new LinearLayoutManager(getActivity());
-        this.recyclerView.setLayoutManager(this.layoutManager);
-        final List arrayList = new ArrayList();
-        this.chatReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+
+        chatReference = FirebaseDatabase.getInstance().getReference(Config.FIREBASE_CHAT_REFERENCE);
+
+        String userId = Config.getCurrentUser(getActivity()).getUserId();
+
+        recyclerView = getActivity().findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(this.layoutManager);
+        final List<String> arrayList = new ArrayList<>();
+
+        chatReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
             public void onCancelled(DatabaseError databaseError) {
             }
 
+            @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot key : dataSnapshot.getChildren()) {
                     arrayList.add(key.getKey());
                 }
-                ChatListFragment.this.recyclerView.setAdapter(new ChatListAdapter(ChatListFragment.this.getActivity(), arrayList));
+                ChatListAdapter adapter = new ChatListAdapter(getActivity(), arrayList);
+                recyclerView.setAdapter(adapter);
             }
         });
     }

@@ -167,7 +167,7 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                     holder.jcVideoPlayerStandard.setUp(publication.getVideoUrl()
                             , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
                 } else {
-                    holder.jcVideoPlayerStandard.setVisibility(View.GONE);
+                    holder.jcVideoPlayerStandard = null;
                 }
 
             try {
@@ -203,6 +203,8 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                 holder.imgRecyclerView.setLayoutManager(layoutManager);
                 ImagesAdapter imagesAdapter = new ImagesAdapter(context, publication.getImgUrlList());
                 holder.imgRecyclerView.setAdapter(imagesAdapter);
+            } else {
+                holder.imgRecyclerView.setVisibility(View.GONE);
             }
         }
 
@@ -540,7 +542,7 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                             String imgUrl = s.substring(0, s.indexOf("\""));
                             Link link = new Link(doc.title(), Config.getUrlFromString(currentPublication.getContent()), imgUrl);
                             viewHolder.linkView.setVisibility(View.VISIBLE);
-                            viewHolder.linkView.setLinkInfo(context, link);
+                            viewHolder.linkView.setLinkInfo(link);
                             Log.i("ragging", imgUrl);
                         } else if (response.contains("<img")) {
                             String img = response.substring(response.indexOf("<img"));
@@ -553,12 +555,12 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
 
 
                             Link link = new Link(doc.title(), Config.getUrlFromString(currentPublication.getContent()), imgUrl);
-                            viewHolder.linkView.setLinkInfo(context, link);
+                            viewHolder.linkView.setLinkInfo(link);
                         } else {
                             String imgUrl = "https://firebasestorage.googleapis.com/v0/b/difpridriver-6dc47.appspot.com/o/img_not_found.png?alt=media&token=dfc6b1f3-2027-40fb-96dc-f67b74529fd5";
                             Link link = new Link(doc.title(), Config.getUrlFromString(currentPublication.getContent()), imgUrl);
                             viewHolder.linkView.setVisibility(View.VISIBLE);
-                            viewHolder.linkView.setLinkInfo(context, link);
+                            viewHolder.linkView.setLinkInfo(link);
                         }
                     }
                 }
