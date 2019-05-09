@@ -21,29 +21,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        /*FirebaseDatabase.getInstance().getReference(Config.FIREBASE_USERS_REFERENCE).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = null;
-                boolean exists = false;
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    user = postSnapshot.getValue(User.class);
-                    if(user != null)
-                    if (user.getFirstName().equals("Wiki")) {
-                        user.setStatus("online");
-                        Config.setCurrentUser(getApplicationContext(), user);
-                        Config.updateOnlineUser(getApplicationContext());
-                    }
-                }
 
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-*/
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
