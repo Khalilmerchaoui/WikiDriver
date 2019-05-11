@@ -24,6 +24,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import java.io.IOException;
+
 import app.m26.wikidriver.R;
 import app.m26.wikidriver.activities.MainActivity;
 import app.m26.wikidriver.utils.Config;
@@ -121,7 +123,11 @@ public class WidgetService extends Service {
                                 public void handleMessage(Message m) {
                                     if (!mHasDoubleClicked && isClicked(initialTouchX, finalTouchX, initialTouchY, finalTouchY)) {
                                         if(Config.isUserOnline(getApplicationContext())) {
-                                            Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
+                                            try {
+                                                Config.exitAllAppsFromWidget(WidgetService.this, Config.getActivatedAppList(getApplicationContext()), "main", "");
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
                                             MainActivity.setToDefault();
                                             Config.setUserOnline(getApplicationContext(), false);
                                             stopService(new Intent(WidgetService.this, ListenerService.class));

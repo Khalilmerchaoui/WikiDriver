@@ -1,6 +1,7 @@
 package app.m26.wikidriver.utils;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AppOpsManager;
 import android.app.Service;
 import android.app.usage.UsageStats;
@@ -252,17 +253,19 @@ public class Config {
         return topPackageName;
     }
 
-    public static List<String> getRunningApps(Context context) {
+    public static List<String> getRunningApps(Context context) throws IOException {
         String topPackageName = null;
         List<String> runningApps = new ArrayList<>();
+        List<String> systemApps = getSystemApps();
         UsageStatsManager usage = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
         long time = System.currentTimeMillis();
-        List<UsageStats> stats = usage.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - (1000 * 10000), time);
+        List<UsageStats> stats = usage.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - (1000 * 1000), time);
         if (stats != null) {
             SortedMap<Long, UsageStats> runningTask = new TreeMap<Long, UsageStats>();
             for (UsageStats usageStats : stats) {
                 runningTask.put(usageStats.getLastTimeUsed(), usageStats);
-                runningApps.add(runningTask.get(runningTask.lastKey()).getPackageName());
+                if(!isSystemApp(runningTask.get(runningTask.lastKey()).getPackageName(), systemApps))
+                    runningApps.add(runningTask.get(runningTask.lastKey()).getPackageName());
             }
             if (runningTask.isEmpty()) {
                 return null;
@@ -271,6 +274,31 @@ public class Config {
         }
 
         return runningApps;
+    }
+
+    public static String getForegroundApp(Context context) {
+        String topPackageName = null;
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+            ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager.RunningTaskInfo foregroundTaskInfo = am.getRunningTasks(1).get(0);
+            topPackageName = foregroundTaskInfo.topActivity.getPackageName();
+        }else{
+            UsageStatsManager usage = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
+            long time = System.currentTimeMillis();
+            List<UsageStats> stats = usage.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000*1000, time);
+            if (stats != null) {
+                SortedMap<Long, UsageStats> runningTask = new TreeMap<Long,UsageStats>();
+                for (UsageStats usageStats : stats) {
+                    runningTask.put(usageStats.getLastTimeUsed(), usageStats);
+                }
+                if (runningTask.isEmpty()) {
+                    topPackageName="None";
+                }
+                topPackageName =  runningTask.get(runningTask.lastKey()).getPackageName();
+            }
+        }
+        Log.e("Task List", "Current App in foreground is: " + topPackageName);
+        return topPackageName;
     }
 
     public static List<App> getInstalledApps(Context context) {
@@ -362,7 +390,7 @@ public class Config {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.i("running", getRunningApps(context).toString());
+                //Log.i("running", getRunningApps(context).toString());
                 if(activity.equals("main"))
                     context.startActivity(new Intent(context, MainActivity.class).putExtra("annonce", true));
                 else if(activity.equals("app")) {
@@ -375,13 +403,17 @@ public class Config {
         }, Config.getActivatedAppList(context).size() *  2300);
     }
 
-    public static void exitAllAppsFromWidget(final Context context, List<App> appList, final String activity, final String appPackage) {
+    public static void exitAllAppsFromWidget(final Context context, List<App> appList, final String activity, final String appPackage) throws IOException {
 
         context.startService(new Intent(context, CloseAppsService.class));
 
-        List<String> runningAppsList = getRunningApps(context);
+        //List<String> runningAppsList = getRunningApps(context);
+        //Log.i("runningApps", runningAppsList.toString());
+        String foregroundApp = getForegroundProcess(context);
+
         for(final App app : appList) {
             //if(runningAppsList.contains(app.getPackageName())) {
+            if(!foregroundApp.equals(app.getPackageName()))
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -391,9 +423,9 @@ public class Config {
                     context.startActivity(intent);
                 }
             }, 500);
-            //}
         }
 
+        //}
     }
 
     public static boolean isAccessibilitySettingsOn(Context context) {
