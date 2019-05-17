@@ -54,7 +54,7 @@ public class CloseAppsService extends Service {
 
         windowManager.addView(popupView, p);
 
-        int waitingTime = Config.getActivatedAppList(getApplicationContext()).size() *  2000;
+        int waitingTime = Config.getActivatedAppList(getApplicationContext()).size() *  1500;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
