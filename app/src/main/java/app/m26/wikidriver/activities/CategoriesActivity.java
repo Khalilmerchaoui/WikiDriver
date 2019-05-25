@@ -55,7 +55,6 @@ public class CategoriesActivity extends AppCompatActivity implements SearchView.
 
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-       //getSupportActionBar().setTitle(String.format("%s, %s", user.getCity(), user.getCountry()));
 
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
