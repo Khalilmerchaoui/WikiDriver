@@ -54,7 +54,6 @@ public class CategoriesActivity extends AppCompatActivity implements SearchView.
         User user = Config.getCurrentUser(getApplicationContext());
 
         mToolbar = findViewById(R.id.toolbar);
-       // mToolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
         setSupportActionBar(mToolbar);
        //getSupportActionBar().setTitle(String.format("%s, %s", user.getCity(), user.getCountry()));
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);

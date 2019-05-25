@@ -78,8 +78,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="126" column="55" selection-start-line="126" selection-start-column="55" selection-end-line="126" selection-end-column="55" />
+            <state relative-caret-position="315">
+              <caret line="119" column="30" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -239,10 +239,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/activities/SplashScreenActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/closeapps_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/utils/Config.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/CloseAppsService.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java" />
       </list>
     </option>
   </component>
@@ -514,13 +514,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1552269684729</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Added Screenshots">
-      <created>1553806983913</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1553806983913</updated>
     </task>
     <task id="LOCAL-00003" summary="Added Screenshots">
       <created>1553807029059</created>
@@ -858,7 +851,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558129155544</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Performance Optimization">
+      <created>1558803644458</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1558803644459</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1319,8 +1319,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/m26/wikidriver/services/WidgetService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="126" column="55" selection-start-line="126" selection-start-column="55" selection-end-line="126" selection-end-column="55" />
+        <state relative-caret-position="315">
+          <caret line="119" column="30" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
         </state>
       </provider>
     </entry>
