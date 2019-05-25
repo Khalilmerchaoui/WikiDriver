@@ -116,16 +116,7 @@ public class CategoriesActivity extends AppCompatActivity implements SearchView.
                 launchAddPublication(Config.PUBLICATION_TYPE_OTHER);
             }
         });
-        /*spSort.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
-                Log.i("tagging", position + "");
-                if(position == 0)
-                    loadPublicationsFromFirebase();
-                else
-                    loadSortedPublicationsFromFirebase(position);
-            }
-        });*/
+
         loadPublicationsFromFirebase();
     }
 
