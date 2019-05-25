@@ -117,7 +117,7 @@ public class WidgetService extends Service {
                             //stopSelf();
                             mHasDoubleClicked = true;
                         }
-                        else {     // If not double click....
+                        else {
                             mHasDoubleClicked = false;
                             Handler myHandler = new Handler() {
                                 public void handleMessage(Message m) {
@@ -144,7 +144,6 @@ public class WidgetService extends Service {
                             };
                             myHandler.sendMessageDelayed(new Message(),DOUBLE_PRESS_INTERVAL);
                         }
-                        // record the last time the menu button was pressed.
                         lastPressTime = pressTime;
 
                         return true;
