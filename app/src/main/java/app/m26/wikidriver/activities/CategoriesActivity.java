@@ -228,25 +228,6 @@ public class CategoriesActivity extends AppCompatActivity implements SearchView.
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
         progressDialog.show();
 
-        /*publicationsReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Publication> publications = new ArrayList<>();
-                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Publication publication = postSnapshot.getValue(Publication.class);
-                    if(publication.get)
-                    publications.add(publication);
-                }
-                PublicationsAdapter adapter = new PublicationsAdapter(getApplicationContext(), publications);
-                recyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
