@@ -3,7 +3,6 @@ package app.m26.wikidriver.utils;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
-import android.app.Service;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
@@ -19,10 +18,6 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -35,8 +30,6 @@ import app.m26.wikidriver.models.App;
 import app.m26.wikidriver.models.User;
 import app.m26.wikidriver.services.CloseAppsService;
 import app.m26.wikidriver.services.MyAccessibilityService;
-import app.m26.wikidriver.services.WidgetService;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,11 +38,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yarolegovich.lovelydialog.LovelyInfoDialog;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
@@ -82,11 +73,6 @@ public class Config {
     public static final int PUBLICATION_TYPE_MECHANICAL = 2;
     public static final int PUBLICATION_TYPE_COURSE = 3;
     public static final int PUBLICATION_TYPE_OTHER = 4;
-
-    public static final int HOME_FRAGMENT_RANK = 0;
-    public static final int CHAT_FRAGMENT_RANK = 1;
-    public static final int PROFILE_FRAGMENT_RANK = 2;
-    public static final int SETTINGS_FRAGMENT_RANK = 3;
 
     public static final String FIREBASE_USERS_REFERENCE = "users";
     public static final String FIREBASE_MESSAGES_REFERENCE = "messages";
