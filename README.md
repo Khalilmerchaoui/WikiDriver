@@ -1,6 +1,7 @@
 # WikiDriver
 An Android application which is basically a social network that brings together car drivers who use other transport applications (Uber, Lyft, ...).
 
+<img alt="App icon" src="app/src/main/res/drawable/ic_launcher.png" width=5%>
 <div>
 <img alt="App image" src="screenshots/first_screen.jpg" width="33%">
 <img alt="App image" src="screenshots/second_screen.jpg" width="33%">
