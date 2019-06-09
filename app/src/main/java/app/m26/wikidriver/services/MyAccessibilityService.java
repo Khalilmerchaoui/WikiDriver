@@ -82,7 +82,6 @@ public class MyAccessibilityService extends AccessibilityService {
 
     @Override
     public void onInterrupt() {
-        // TODO Auto-generated method stub
         Log.i("Interrupt", "Interrupt");
     }
 
@@ -96,7 +95,6 @@ public class MyAccessibilityService extends AccessibilityService {
         info.flags = AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
         info.flags = AccessibilityServiceInfo.FLAG_REQUEST_ENHANCED_WEB_ACCESSIBILITY;
         info.flags = AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
-        // We are keeping the timeout to 0 as we don’t need any delay or to pause our accessibility events
         info.feedbackType = AccessibilityEvent.TYPES_ALL_MASK;
         info.notificationTimeout = 100;
         this.setServiceInfo(info);

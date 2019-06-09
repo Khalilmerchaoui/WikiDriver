@@ -22,7 +22,6 @@ public class GetTimeAgo extends Application {
             return null;
         }
 
-        // TODO: localize
         final long diff = now - time;
         if (diff < MINUTE_MILLIS) {
             return "just now";
