@@ -170,11 +170,11 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                     holder.jcVideoPlayerStandard = null;
                 }
 
-            try {
-                //String urlFromString = Config.getUrlFromString(publication.getContent());
+                String urlFromString = Config.getUrlFromString(publication.getContent());
+
                 //holder.txtPublication.setText(publication.getContent().replace(urlFromString, ""));
-                if (holder.txtPublication.getText().toString().isEmpty())
-                    holder.txtPublication.setVisibility(View.GONE);
+                //if (holder.txtPublication.getText().toString().isEmpty())
+                  //  holder.txtPublication.setVisibility(View.GONE);
 
                 holder.linkView.setVisibility(View.VISIBLE);
                 Linkify.addLinks(holder.txtPublication, Linkify.WEB_URLS);
@@ -182,16 +182,17 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                         R.color.colorAccent));
                 holder.txtPublication.setLinksClickable(true);
 
+                if(urlFromString != null)
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        new HttpGet(holder).execute(Config.getUrlFromString(publication.getContent()), String.valueOf(position), publication.getContent());
+                            new HttpGet(holder).execute(urlFromString, String.valueOf(position), publication.getContent());
                     }
                 }, 50);
-            } catch (NullPointerException e) {
-                holder.txtPublication.setText(publication.getContent());
-                holder.linkView.setVisibility(View.GONE);
-            }
+                else {
+                    holder.txtPublication.setText(publication.getContent());
+                    holder.linkView.setVisibility(View.GONE);
+                }
 
             holder.txtComments.setText(String.format("%d " + context.getResources().getString(R.string.comments), publication.getNumberOfComments()));
             holder.txtTimeStamp.setText(Config.epochToDate(publication.getTimeStamp(), "MMMM d  h:mm a"));
@@ -229,39 +230,42 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
                 context.startActivity(commentIntent);
             }
         });
+        if(publication != null) {
+            if (publication.getUserId().equals(Config.getCurrentUser(context).getUserId())) {
+                final PopupMenu popup = new PopupMenu(context, holder.imgBtnMore);
+                popup.getMenuInflater()
+                        .inflate(R.menu.popup_menu, popup.getMenu());
 
-        if (publication.getUserId().equals(Config.getCurrentUser(context).getUserId())) {
-            final PopupMenu popup = new PopupMenu(context, holder.imgBtnMore);
-            popup.getMenuInflater()
-                    .inflate(R.menu.popup_menu, popup.getMenu());
+                holder.imgBtnMore.setVisibility(View.VISIBLE);
 
-            holder.imgBtnMore.setVisibility(View.VISIBLE);
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.menu_delete) {
+                            publicationsReference.child(publication.getPublicationId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    popup.dismiss();
+                                    publicationList.remove(position);
+                                    notifyItemRemoved(position);
+                                    notifyDataSetChanged();
+                                    Toast.makeText(context, context.getResources().getString(R.string.item_removed), Toast.LENGTH_SHORT).show();
+                                    //notifyItemRangeChanged(position, publicationList.size());
 
-            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    if (item.getItemId() == R.id.menu_delete) {
-                        publicationsReference.child(publication.getPublicationId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                popup.dismiss();
-                                publicationList.remove(position);
-                                SocialPublicationsAdapter.this.notifyItemRemoved(position);
-                                SocialPublicationsAdapter.this.notifyItemRangeChanged(position, getItemCount());
-
-                            }
-                        });
+                                }
+                            });
+                        }
+                        return false;
                     }
-                    return false;
-                }
-            });
+                });
 
-            holder.imgBtnMore.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    popup.show();
-                }
-            });
+                holder.imgBtnMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popup.show();
+                    }
+                });
+            }
         }
 
 
@@ -571,7 +575,7 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
 
     @Override
     public int getItemCount() {
-        return publicationList.size();
+        return publicationList.size()> 0 ? publicationList.size():1;
     }
 
     @Override

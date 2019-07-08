@@ -215,4 +215,6 @@ Tous droits réservés - 24 novembre 2018
     <string name="open_chrome">Ouvrir dans Chrome</string>
     <string name="copy_link">Copier le lien</string>
     <string name="share_via">Partager avec...</string>
+
+    <string name="item_removed">Publication supprimé</string>
 </resources>
