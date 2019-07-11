@@ -60,8 +60,6 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
                 .load(imgUrlList.get(position))
                 .error(R.drawable.image_not_loaded)
                 .into(holder.imageView);
-
-        Log.i("performance", "" + (System.currentTimeMillis() -startTime));
     }
 
     @Override

@@ -144,7 +144,7 @@ public class SocialFragment extends Fragment implements TextWatcher {
 
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setItemViewCacheSize(30);
         recyclerView.setDrawingCacheEnabled(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
@@ -382,16 +382,20 @@ public class SocialFragment extends Fragment implements TextWatcher {
     }
 
     private void loadPublicationsFromFirebase() {
-        publicationsReference.limitToLast(15).addListenerForSingleValueEvent(new ValueEventListener() {
+
+        publicationsReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Publication> publications = new ArrayList<>();
                 User currentUser = Config.getCurrentUser(getActivity());
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Publication publication = postSnapshot.getValue(Publication.class);
+                    Log.i("publicationsTest", publication.getPublicationId());
+
                     if(currentUser != null)
-                        if(publication.getCity().equals(currentUser.getCity()) && publication.getCountry().equals(currentUser.getCountry()) && !publication.getPublicationId().equals("-LcTnhMhqiRFr9n3ycYb"))
+                        if(publication.getCity().equals(currentUser.getCity()) && publication.getCountry().equals(currentUser.getCountry()) && !publication.getPublicationId().equals("-LcTnhMhqiRFr9n3ycYb")) {
                             publications.add(publication);
+                        }
                 }
                 Publication video = dataSnapshot.child("-LcTnhMhqiRFr9n3ycYb").getValue(Publication.class);
                 publications.add(video);
@@ -418,6 +422,7 @@ public class SocialFragment extends Fragment implements TextWatcher {
 
             }
         });
+        publicationsReference.keepSynced(true);
     }
 
     boolean video = false;

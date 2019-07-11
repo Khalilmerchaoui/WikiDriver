@@ -207,6 +207,8 @@ public class SocialPublicationsAdapter extends RecyclerView.Adapter<SocialPublic
             } else {
                 holder.imgRecyclerView.setVisibility(View.GONE);
             }
+        } else{
+            Log.i("failedpublications", publication.getPublicationId());
         }
 
 
