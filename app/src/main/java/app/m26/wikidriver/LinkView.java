@@ -53,14 +53,17 @@ public class LinkView extends LinearLayout {
         txtTitle.setText(link.getTitle());
         txtUrl.setText(link.getUrl());
 
-
-        Picasso.with(img.getContext())
-                .load(link.getImgUrl())
-                .fit()
-                .centerCrop()
-                .memoryPolicy(MemoryPolicy.NO_CACHE)
-                .error(R.drawable.image_not_loaded)
-                .into(img);
+        try {
+            Picasso.with(img.getContext())
+                    .load(link.getImgUrl())
+                    .fit()
+                    .centerCrop()
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .error(R.drawable.image_not_loaded)
+                    .into(img);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     public Link getLinkInfo() {
